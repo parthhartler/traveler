@@ -9,7 +9,7 @@ import reducer from "./store/reducers";
 import { BrowserRouter } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-//import "./index.css";
+import "./index.css";
 
 import App from "./app";
 import * as serviceWorker from "./serviceWorker";

@@ -1,0 +1,33 @@
+.ft-checkout-page.st-checkout-page .check-out-form .form-group input,
+.ft-checkout-page .custom-select {
+	font-size: 0.9rem;
+	height: 35px;
+}
+.ft-checkout-page .passenger-details {
+	font-size: 12px;
+}
+.border-dashed {
+	border-bottom: 1px dashed #ccc;
+}
+.fare-label {
+	font-size: 22px;
+    color: #000;
+    font-weight: 500;
+}
+.st-checkout-page .total-amount .st-icheck {
+    margin-top: 20px;
+}
+.card-header button:after {
+	font-family: "FontAwesome";
+	content: "\f106";
+    color: #fff;
+    font-size: 18px;
+    font-weight: normal;
+}
+.card-header button[aria-expanded="false"]:after {
+	content: "\f107";
+	font-family: "FontAwesome";
+	color: #fff;
+    font-size: 18px;
+    font-weight: normal;
+}
