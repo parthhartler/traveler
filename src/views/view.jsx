@@ -1,15 +1,16 @@
 import React, { Component, Fragment } from "react";
-import Header from "./Header/header";
-import Content from "./Content/content";
-import FilterContainer from "./Content/FilterContainer/filterContainer";
+import Login from "./Login/login";
+import HomePage from "./homePage";
+import { Route, Switch } from "react-router-dom";
 
 class View extends Component {
   render() {
     return (
       <Fragment>
-        <Header />
-        <Content />
-        <FilterContainer />
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route path="/homepage" component={HomePage} />
+        </Switch>
       </Fragment>
     );
   }

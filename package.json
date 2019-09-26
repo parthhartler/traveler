@@ -15,6 +15,7 @@
     "moment": "^2.24.0",
     "react": "^16.8.3",
     "react-bootstrap": "^1.0.0-beta.5",
+    "react-bootstrap-typeahead": "^3.4.6",
     "react-dates": "^20.1.0",
     "react-dev-utils": "^9.0.3",
     "react-dom": "^16.8.3",

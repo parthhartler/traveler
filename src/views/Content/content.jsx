@@ -1,14 +1,23 @@
 import React, { Component } from "react";
-const hiddenStyle = { visibility: "hidden" };
-const style = {
-  position: "static",
-  top: "0px",
-  left: "0px",
-  zIndex: 99,
-  opacity: 1,
-  display: "block",
-  visibility: "hidden"
-};
+const hiddenStyle = { visibility: "hidden" },
+  styleStatic = {
+    position: "static",
+    top: "0px",
+    left: "0px",
+    zIndex: 99,
+    opacity: 1,
+    display: "block",
+    visibility: "hidden"
+  },
+  styleImage = {
+    position: "absolute",
+    top: "0px",
+    left: "0px",
+    zIndex: 99,
+    opacity: 1,
+    display: "block",
+    visibility: "visible"
+  };
 
 class Content extends Component {
   render() {
@@ -20,7 +29,7 @@ class Content extends Component {
         data-cycle-slides=".slide"
         data-cycle-speed="1500"
       >
-        <div className="slide cycle-slide cycle-sentinel" style={style}>
+        <div className="slide cycle-slide cycle-sentinel" style={styleStatic}>
           <div className="row" style={hiddenStyle}>
             <div className="col-lg-6" style={hiddenStyle}></div>
             <div
@@ -40,7 +49,10 @@ class Content extends Component {
             </div>
           </div>
         </div>
-        <div className="slide cycle-slide cycle-slide-active" style={style}>
+        <div
+          className="slide cycle-slide cycle-slide-active"
+          style={styleImage}
+        >
           <div className="row">
             <div className="col-lg-6"></div>
             <div className="col-lg-4 contentWrapper col-md-3">

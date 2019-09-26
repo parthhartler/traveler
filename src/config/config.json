@@ -1,0 +1,6 @@
+{
+  "base_url": "https://perkzza-dev-api-tenants.hartleylab.com/",
+  "const": {
+    "DATE_FORMAT": "MM/DD/YYYY"
+  }
+}
