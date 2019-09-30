@@ -13,7 +13,7 @@ function login(user) {
     return auth
       .login(user)
       .then(res => {
-        localStorage.setItem("token", res.data.access_token);
+        auth.setLoginToken(res.data.access_token);
         dispatch(success(authConstants.LOGIN_SUCCESS, res));
       })
       .catch(error => {
@@ -29,6 +29,7 @@ function logout() {
     return auth
       .logout()
       .then(res => {
+        auth.resetTokenLogout();
         dispatch(success(authConstants.LOGOUT_USER_SUCCESS, res));
       })
       .catch(error => {

@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from "react";
-import { DateInput } from "../../../../components/Forms/DateInput";
-import { AutoComplete } from "../../../../components/Forms/AutoComplete";
-import { Input } from "../../../../components/Forms/InputWithIncrementor";
+import { DateInput } from "../../../components/Forms/DateInput";
+import { AutoComplete } from "../../../components/Forms/AutoComplete";
+import { Input } from "../../../components/Forms/InputWithIncrementor";
 import { Formik } from "formik";
 import moment from "moment";
 import * as Yup from "yup";
-import { NewToastAlert } from "../../../Common/utils";
-import commonService from "../../../../api/commonService";
+import { NewToastAlert } from "../../Common/utils";
+import commonService from "../../../api/commonService";
 
-class HotelFilters extends Component {
+class HotelWidget extends Component {
   constructor(props) {
     super(props);
 
@@ -59,7 +59,7 @@ class HotelFilters extends Component {
           enableReinitialize
           initialValues={initVal}
           validationSchema={this.validationRules}
-          displayName="hotelFilters"
+          displayName="HotelWidget"
           component={this.renderForm}
           onSubmit={this.handleSubmit}
         />
@@ -286,4 +286,4 @@ class HotelFilters extends Component {
   };
 }
 
-export default HotelFilters;
+export default HotelWidget;

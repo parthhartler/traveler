@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from "react";
 import { filterLinks } from "../../Common/constants";
-import HotelFilters from "./Hotels/filters";
+import HotelWidget from "./hotelWidget";
 import { Tab, Nav } from "react-bootstrap";
 
 const COMPONENT_MAP = {
-  hotels: HotelFilters
+  hotels: HotelWidget
 };
 
-class filterContainer extends Component {
+class WidgetContainer extends Component {
   constructor(props) {
     super(props);
     this.state = { filterActiveTab: "hotels" };
@@ -67,4 +67,4 @@ class filterContainer extends Component {
   }
 }
 
-export default filterContainer;
+export default WidgetContainer;

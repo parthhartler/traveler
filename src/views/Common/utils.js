@@ -25,7 +25,7 @@ function NewToastAlert(
   }
 
   if (!error) {
-    config.autoClose = 8000;
+    config.autoClose = 4000;
   }
 
   if (confSetting && confSetting.autoClose) {

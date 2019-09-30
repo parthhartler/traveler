@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
-import Header from "./Header/header";
-import Content from "./Content/content";
-import FilterContainer from "./Content/FilterContainer/filterContainer";
+import Header from "../Header/header";
+import HomePageHelper from "./homePageHelper";
+import WidgetContainer from "./Widgets/widgetContainer";
 
 class HomePage extends Component {
   render() {
@@ -9,8 +9,8 @@ class HomePage extends Component {
       <Fragment>
         <div className="bannerWrapper">
           <Header />
-          <Content />
-          <FilterContainer />
+          <HomePageHelper />
+          <WidgetContainer />
         </div>
       </Fragment>
     );

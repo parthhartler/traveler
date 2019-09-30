@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Formik } from "formik";
 import { Input } from "../../components/Forms/Input";
-import logo from "../../assets/images/logo.png";
+import logo from "../../styles/assets/images/logo.png";
 import * as Yup from "yup";
 import { authAction } from "../../store/actions";
 import { connect } from "react-redux";

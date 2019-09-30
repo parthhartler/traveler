@@ -1,4 +1,4 @@
-@import "./styles/custom.css";
-@import "./styles/responsive.css";
-@import "./styles/plugin.css";
-@import "./styles/jquery.bootstrap-touchspin.min.css";
+@import "./styles/css/custom.css";
+@import "./styles/css/responsive.css";
+@import "./styles/css/plugin.css";
+@import "./styles/css/jquery.bootstrap-touchspin.min.css";

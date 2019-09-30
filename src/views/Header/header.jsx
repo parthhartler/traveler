@@ -1,23 +1,14 @@
 import React, { Component, Fragment } from "react";
-import logo from "../../assets/images/logo.png";
+import logo from "../../styles/assets/images/logo.png";
 import { headerLinks } from "../Common/constants";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { authAction } from "../../store/actions";
-import { Redirect } from "react-router-dom";
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      RedirectToLogin: false
-    };
-  }
   render() {
-    const { RedirectToLogin } = this.state;
     return (
       <Fragment>
-        {RedirectToLogin && <Redirect to={`/`} />}
         <header>
           {/* <div className="navbar-responsive">
           <nav className="navbar navbar-expand-md navbar-dark">
@@ -390,12 +381,12 @@ class Header extends Component {
     );
   }
 
-  handleLogout = () => {
-    this.props.logout();
+  handleLogout = async () => {
+    await this.props.logout();
     const { error } = this.props;
 
     if (!error) {
-      this.setState({ RedirectToLogin: true });
+      window.location = "/login";
     }
   };
 

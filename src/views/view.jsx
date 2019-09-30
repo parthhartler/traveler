@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from "react";
-import Login from "./Login/login";
-import HomePage from "./homePage";
-import { Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { Route, Switch } from "react-router-dom";
+import ProtectedRoutes from "../components/protectedRoutes";
+import Login from "./Login/login";
+import HomePage from "./Home/homePage";
 import "react-toastify/dist/ReactToastify.css";
 
 class View extends Component {
@@ -12,7 +13,8 @@ class View extends Component {
         <ToastContainer containerId="successAlert" enableMultiContainer />
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route path="/homepage" component={HomePage} />
+          <Route path="/login" component={Login} />
+          <ProtectedRoutes path="/homepage" component={HomePage} />
         </Switch>
       </Fragment>
     );

@@ -19,7 +19,7 @@ const hiddenStyle = { visibility: "hidden" },
     visibility: "visible"
   };
 
-class Content extends Component {
+class HomePageHelper extends Component {
   render() {
     return (
       <div
@@ -72,4 +72,4 @@ class Content extends Component {
   }
 }
 
-export default Content;
+export default HomePageHelper;
