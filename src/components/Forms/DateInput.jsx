@@ -15,7 +15,8 @@ class DateInput extends Component {
       isRequired = false,
       onDateChange,
       onFocusChange,
-      focused
+      focused,
+      isDayBlocked
     } = this.props;
 
     let isValidClass = "";
@@ -44,6 +45,7 @@ class DateInput extends Component {
             focused={focused}
             onFocusChange={onFocusChange}
             id={name}
+            isDayBlocked={isDayBlocked}
           />
           <div className="invalid-feedback">{errorMsg}</div>
         </div>

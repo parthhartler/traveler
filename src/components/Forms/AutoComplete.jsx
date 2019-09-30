@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { AsyncTypeahead } from "react-bootstrap-typeahead";
+import "react-bootstrap-typeahead/css/Typeahead.css";
 import "react-bootstrap-typeahead/css/Typeahead-bs4.css";
 
 class AutoComplete extends Component {
@@ -59,7 +60,7 @@ class AutoComplete extends Component {
           id={name}
           disabled={disabled}
           className={fieldClass}
-          renderMenuItemChildren={(option, props) => (
+          renderMenuItemChildren={option => (
             <List key={option.id} user={option} />
           )}
         />

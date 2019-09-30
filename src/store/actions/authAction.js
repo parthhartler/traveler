@@ -1,8 +1,9 @@
-import auth from "../../api/AuthService";
+import auth from "../../api/authService";
 import { authConstants } from "../constants";
 
 export const authAction = {
-  login
+  login,
+  logout
 };
 
 function login(user) {
@@ -17,6 +18,21 @@ function login(user) {
       })
       .catch(error => {
         dispatch(failure(authConstants.LOGIN_FAILURE, error));
+      });
+  };
+}
+
+function logout() {
+  return dispatch => {
+    dispatch(request(authConstants.LOGOUT_USER_REQUEST));
+
+    return auth
+      .logout()
+      .then(res => {
+        dispatch(success(authConstants.LOGOUT_USER_SUCCESS, res));
+      })
+      .catch(error => {
+        dispatch(failure(authConstants.LOGOUT_USER_FAILURE, error));
       });
   };
 }

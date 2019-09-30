@@ -1,5 +1,6 @@
 {
-  "base_url": "https://perkzza-dev-api-tenants.hartleylab.com/",
+  "base_url": "https://perkzza-dev-api-hotels.hartleylab.com/",
+  "base_auth_url": "https://perkzza-dev-api-users.hartleylab.com/",
   "const": {
     "DATE_FORMAT": "MM/DD/YYYY"
   }

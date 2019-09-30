@@ -5,6 +5,8 @@ import { Input } from "../../../../components/Forms/InputWithIncrementor";
 import { Formik } from "formik";
 import moment from "moment";
 import * as Yup from "yup";
+import { NewToastAlert } from "../../../Common/utils";
+import commonService from "../../../../api/commonService";
 
 class HotelFilters extends Component {
   constructor(props) {
@@ -13,7 +15,7 @@ class HotelFilters extends Component {
     this.state = {
       initVal: {
         check_in: moment(),
-        check_out: moment(),
+        check_out: moment(new Date()).add(1, "days"),
         destination: "",
         rooms: 0,
         adults: 0,
@@ -66,17 +68,28 @@ class HotelFilters extends Component {
   }
 
   handleSubmit = async (values, formikProps) => {
-    debugger;
     const { error, handleClose } = this.props;
+    const { rooms, adults } = values;
     if (error) {
       //setServerFieldErrors(error, formikProps);
     } else {
-      //NewToastAlert("successAlert", "", "Package added successfully");
+      if (values && rooms && adults) {
+        if (rooms * 4 < adults) {
+          NewToastAlert(
+            "successAlert",
+            "",
+            "Maximum 4 guests allowed per room.",
+            null,
+            null,
+            true
+          );
+        } else {
+          //success
+        }
+      }
       //await this.tabChangeHandler();
       //await this.tabChangeHandler("packages");
       console.log(values);
-      //handleClose("addGlCodeShow");
-      //NewToastAlert("successAlert", "", "Added successfully");
     }
   };
 
@@ -142,6 +155,7 @@ class HotelFilters extends Component {
                       this.handleFocusChange("focusedCheckOut", focused)
                     }
                     isRequired={true}
+                    isDayBlocked={day => day <= values.check_in}
                   />
                 </div>
               </div>
@@ -228,7 +242,7 @@ class HotelFilters extends Component {
   };
 
   handleDecrement = (value, formikProps, field) => {
-    formikProps.setFieldValue(field, value - 1);
+    formikProps.setFieldValue(field, value ? value - 1 : value);
   };
 
   handleDateChange = (value, formikProps, field) => {
@@ -244,29 +258,29 @@ class HotelFilters extends Component {
       acLoading: true
     });
 
-    // await commonService
-    //   .assetsAutoComplete(query)
-    //   .then(res => {
-    //     if (res.data.data) {
-    //       this.setState({
-    //         acLoading: false,
-    //         assetNumberOptions: res.data.data.map(ele => ({
-    //           id: ele.asset_id,
-    //           label: ele.asset_no
-    //         }))
-    //       });
-    //     }
-    //   })
-    //   .catch(error => {
-    //     this.setState({
-    //       acLoading: false
-    //     });
-    //   });
+    await commonService
+      .destinationAutoComplete(query)
+      .then(res => {
+        if (res.data.results) {
+          this.setState({
+            acLoading: false,
+            destinations: res.data.results.city_en_us.map(ele => ({
+              id: ele.id,
+              label: ele.term
+            }))
+          });
+        }
+      })
+      .catch(error => {
+        this.setState({
+          acLoading: false
+        });
+      });
   };
 
   acHandleChange = async (selected, formikProps) => {
     if (selected.length) {
-      this.setState({ assetNumberOptions: [] });
+      this.setState({ destinations: [] });
       formikProps.setFieldValue("destination", selected[0]);
     }
   };

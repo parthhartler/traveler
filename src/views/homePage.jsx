@@ -5,13 +5,13 @@ import FilterContainer from "./Content/FilterContainer/filterContainer";
 
 class HomePage extends Component {
   render() {
-    const token = localStorage.getItem("token");
-    debugger;
     return (
       <Fragment>
-        <Header />
-        <Content />
-        <FilterContainer />
+        <div className="bannerWrapper">
+          <Header />
+          <Content />
+          <FilterContainer />
+        </div>
       </Fragment>
     );
   }

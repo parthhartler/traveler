@@ -6,6 +6,8 @@ axios.defaults.headers.common["Accept"] = "application/json";
 axios.defaults.headers.common["Content-Type"] = "application/json";
 
 axios.interceptors.request.use(function(config) {
+  if (config.data && config.data.use_users_base_url)
+    config.baseURL = Config.base_auth_url;
   const token = localStorage.getItem("token");
   if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;

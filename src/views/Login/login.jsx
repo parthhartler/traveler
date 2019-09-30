@@ -37,7 +37,11 @@ class Login extends Component {
   //   }
 
   handleSubmit = async (values, formikProps) => {
-    this.props.login(values);
+    const credentials = {
+      ...values,
+      tenant_id: "438cb20d-9b7c-4cf6-9d03-35686c03b924"
+    };
+    this.props.login(credentials);
   };
 
   validation = () => {
