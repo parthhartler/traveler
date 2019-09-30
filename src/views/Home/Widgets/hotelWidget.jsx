@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from "react";
+import { Formik } from "formik";
+import { Redirect } from "react-router-dom";
+import moment from "moment";
+import * as Yup from "yup";
+import commonService from "../../../api/commonService";
+import { NewToastAlert } from "../../Common/utils";
 import { DateInput } from "../../../components/Forms/DateInput";
 import { AutoComplete } from "../../../components/Forms/AutoComplete";
 import { Input } from "../../../components/Forms/InputWithIncrementor";
-import { Formik } from "formik";
-import moment from "moment";
-import * as Yup from "yup";
-import { NewToastAlert } from "../../Common/utils";
-import commonService from "../../../api/commonService";
 
 class HotelWidget extends Component {
   constructor(props) {
@@ -22,7 +23,8 @@ class HotelWidget extends Component {
         children: 0
       },
       acLoading: false,
-      destinations: []
+      destinations: [],
+      redirectToHotelSearch: false
     };
 
     const digitAllowed = "Only digits are allowed.";
@@ -52,9 +54,10 @@ class HotelWidget extends Component {
   }
 
   render() {
-    const { initVal } = this.state;
+    const { initVal, redirectToHotelSearch } = this.state;
     return (
       <Fragment>
+        {redirectToHotelSearch && <Redirect to="/hotelsearch" />}
         <Formik
           enableReinitialize
           initialValues={initVal}
@@ -84,7 +87,7 @@ class HotelWidget extends Component {
             true
           );
         } else {
-          //success
+          this.setState({ redirectToHotelSearch: true });
         }
       }
       //await this.tabChangeHandler();

@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import logo from "../../styles/assets/images/logo.png";
+import logo_blue from "../../styles/assets/images/logo_blue.png";
 import { headerLinks } from "../Common/constants";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
@@ -7,9 +8,11 @@ import { authAction } from "../../store/actions";
 
 class Header extends Component {
   render() {
+    const { whiteBackground } = this.props,
+      headerClass = whiteBackground ? "bgWhite" : "";
     return (
       <Fragment>
-        <header>
+        <header className={headerClass}>
           {/* <div className="navbar-responsive">
           <nav className="navbar navbar-expand-md navbar-dark">
             <a className="navbar-brand" href="#">
@@ -70,7 +73,10 @@ class Header extends Component {
             <div className="row">
               <div className="col-lg-3 col-md-3 logoWrapper">
                 <a href="#">
-                  <img src={logo} alt="Travelers" />
+                  <img
+                    src={whiteBackground ? logo_blue : logo}
+                    alt="Travelers"
+                  />
                 </a>
               </div>
               <div className="col-lg-9 col-md-9 flex-column">
