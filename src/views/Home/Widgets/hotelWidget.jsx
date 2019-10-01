@@ -8,6 +8,8 @@ import { NewToastAlert } from "../../Common/utils";
 import { DateInput } from "../../../components/Forms/DateInput";
 import { AutoComplete } from "../../../components/Forms/AutoComplete";
 import { Input } from "../../../components/Forms/InputWithIncrementor";
+import { connect } from "react-redux";
+import { hotelAction } from "../../../store/actions";
 
 class HotelWidget extends Component {
   constructor(props) {
@@ -71,7 +73,7 @@ class HotelWidget extends Component {
   }
 
   handleSubmit = async (values, formikProps) => {
-    const { error, handleClose } = this.props;
+    const { error, handleClose, setHotelWidgetAtSearch } = this.props;
     const { rooms, adults } = values;
     if (error) {
       //setServerFieldErrors(error, formikProps);
@@ -87,6 +89,7 @@ class HotelWidget extends Component {
             true
           );
         } else {
+          setHotelWidgetAtSearch(values);
           this.setState({ redirectToHotelSearch: true });
         }
       }
@@ -289,4 +292,23 @@ class HotelWidget extends Component {
   };
 }
 
-export default HotelWidget;
+const mapStateToProps = state => {
+  const { loading, error } = state.hotelReducer;
+
+  return {
+    loading,
+    error
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setHotelWidgetAtSearch: filterObject =>
+      dispatch(hotelAction.setHotelWidgetAtSearch(filterObject))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HotelWidget);
