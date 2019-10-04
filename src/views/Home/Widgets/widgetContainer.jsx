@@ -30,23 +30,39 @@ class WidgetContainer extends Component {
               activeKey={filterActiveTab}
             >
               <div className="tabsWrapper homeTabs col-lg-6 col-md-8">
-                <Nav className="topnav nav nav-tabs border-0">
-                  {filterLinks.map(value => {
-                    const additionalClass =
-                      value.eventKey === "hotels" ? "" : "disabled";
-                    return (
-                      <Nav.Item className="mb-0" key={value.eventKey}>
-                        <Nav.Link
-                          eventKey={value.eventKey}
-                          className={additionalClass}
-                          title={value.title}
-                        >
-                          {value.title}
-                        </Nav.Link>
-                      </Nav.Item>
-                    );
-                  })}
-                </Nav>
+                <div className="nav-tabs">
+                  <a
+                    href="javascript:void(0)"
+                    className="left-btn text-white d-md-none d-block"
+                  >
+                    <i className="fa fa-angle-left" aria-hidden="true"></i>
+                  </a>
+                  <div className="widget-tab-wrapper">
+                    <Nav className="topnav nav  border-0">
+                      {filterLinks.map(value => {
+                        const additionalClass =
+                          value.eventKey === "hotels" ? "" : "disabled";
+                        return (
+                          <Nav.Item className="mb-0" key={value.eventKey}>
+                            <Nav.Link
+                              eventKey={value.eventKey}
+                              className={additionalClass}
+                              title={value.title}
+                            >
+                              {value.title}
+                            </Nav.Link>
+                          </Nav.Item>
+                        );
+                      })}
+                    </Nav>
+                  </div>
+                  <a
+                    href="javascript:void(0)"
+                    className="right-btn text-white d-md-none d-block"
+                  >
+                    <i className="fa fa-angle-right" aria-hidden="true"></i>
+                  </a>
+                </div>
                 <Tab.Content>
                   {filterLinks.map(value => {
                     const ComponentName = COMPONENT_MAP[value.eventKey];

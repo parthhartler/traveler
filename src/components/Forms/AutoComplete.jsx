@@ -42,28 +42,34 @@ class AutoComplete extends Component {
           {label}
         </label>
         {!isRequired && <span className="optionalLabel"> (Optional)</span>}
-        <AsyncTypeahead
-          defaultInputValue={defaultInputValue}
-          onInputChange={onInputChange}
-          //selected={value}
-          defaultSelected={defaultSelected}
-          labelKey="label"
-          isLoading={isLoading}
-          minLength={3}
-          onSearch={onSearch}
-          options={options}
-          placeholder={placeholder}
-          cache={false}
-          onChange={onChange}
-          searchText="Searching..."
-          name={name}
-          id={name}
-          disabled={disabled}
-          className={fieldClass}
-          renderMenuItemChildren={option => (
-            <List key={option.id} user={option} />
-          )}
-        />
+        <div className="autocomplete-container">
+          <span className="icon-font text-muted">
+            <i className="bx bx-map"></i>
+          </span>
+
+          <AsyncTypeahead
+            defaultInputValue={defaultInputValue}
+            onInputChange={onInputChange}
+            //selected={value}
+            defaultSelected={defaultSelected}
+            labelKey="label"
+            isLoading={isLoading}
+            minLength={3}
+            onSearch={onSearch}
+            options={options}
+            placeholder={placeholder}
+            cache={false}
+            onChange={onChange}
+            searchText="Searching..."
+            name={name}
+            id={name}
+            disabled={disabled}
+            className={fieldClass}
+            renderMenuItemChildren={option => (
+              <List key={option.id} user={option} />
+            )}
+          />
+        </div>
         <div className="invalid-feedback">{errorMsg}</div>
       </div>
     );

@@ -1,5 +1,6 @@
 @import "./styles/css/custom.css";
 @import "./styles/css/responsive.css";
 @import "./styles/css/plugin.css";
+@import "./styles/css/override.css";
 @import "./styles/css/boxicons.min.css";
 @import "./styles/css/jquery.bootstrap-touchspin.min.css";

@@ -1,0 +1,110 @@
+.DateRangePicker .DateInput_input,
+.SingleDatePicker .DateInput_input {
+  width: 100%;
+  height: 28px;
+  padding: 0.375rem 0.75rem;
+  font-weight: normal;
+  line-height: 1;
+  font-family: "Roboto", sans-serif;
+  color: #495057;
+  background-clip: padding-box;
+  border-radius: 3px;
+  font-size: 13px;
+  border: 1px solid #e1e1e1;
+}
+.DateRangePicker .DateRangePickerInput {
+  display: flex;
+}
+body .DateRangePicker {
+  border-radius: 3px;
+  display: inherit;
+}
+.SingleDatePicker .DateInput_input {
+  height: 35px;
+  font-size: 16px;
+}
+.SingleDatePicker,
+.SingleDatePickerInput,
+.SingleDatePicker .DateInput {
+  width: 100%;
+}
+.invalid-feedback {
+  line-height: 12px;
+}
+.state-popover:before,
+.state-popover:after {
+  right: 50%;
+  transform: translateX(-50%);
+}
+
+.homeTabs .tab-pane {
+  overflow: visible;
+}
+.homeTabs .SingleDatePicker_picker {
+  z-index: 30;
+}
+.homeTabs .SingleDatePickerInput__withBorder {
+  border: 0;
+}
+.form-control.is-invalid,
+.was-validated .form-control:invalid,
+.form-control.is-valid,
+.was-validated .form-control:valid {
+  background-image: none;
+}
+.autocomplete-container,
+.datepicker-container {
+  position: relative;
+  font: 1rem Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+.autocomplete-container .icon-font,
+.datepicker-container .icon-font {
+  position: absolute;
+  top: 9px;
+  left: 10px;
+  z-index: 1;
+}
+.datepicker-container .DateInput_input {
+  padding-left: 30px;
+}
+.autocomplete-container .rbt-input {
+  padding: 9px 9px 9px 30px;
+  border: 1px solid #e1e1e1;
+}
+.search-widget-wrapper .autocomplete-container .icon-font {
+  top: 7px;
+  left: 8px;
+}
+.search-widget-wrapper .DateInput_input {
+  border: 0;
+}
+.search-widget-wrapper .autocomplete-container .rbt-input {
+  padding: 7px 7px 7px 30px;
+}
+.search-widget-wrapper .DateInput_input__disabled,
+.search-widget-wrapper .DateRangePickerInput__disabled {
+  background: #e5e5e5;
+  font-style: inherit;
+}
+.filter-wrapper .rbt-input {
+  padding: 9px;
+}
+body .DateInput.DateInput__disabled,
+body .DateInput {
+  width: 100%;
+}
+/*  */
+.noUi-base {
+  position: relative;
+}
+html:not([dir="rtl"]) .noUi-horizontal .noUi-handle.noUi-handle-lower {
+  position: absolute;
+  top: -3px;
+  left: 0;
+}
+html:not([dir="rtl"]) .noUi-horizontal .noUi-handle.noUi-handle-upper {
+  position: absolute;
+  right: 0;
+  top: -3px;
+}
+/*  */

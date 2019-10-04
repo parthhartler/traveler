@@ -2151,7 +2151,8 @@ body .st-tabs .tab-pane {
 	font-size: 15px;
 }
 .price-section .payment-amount {
-	border-top: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    padding-top: 5px;
 }
 .service-price .btn.btn-outline-secondary,
 .btn.btn-outline-secondary {
@@ -2180,10 +2181,7 @@ body .st-tabs .tab-pane {
 	font-size: 16px;
 }
 .reviewWrapper {
-	/*position: absolute;
-	bottom: 27px;
-	right: 0;*/
-	height: 40%;
+	padding: 40px 0;
 }
 .reviewWrapperFree {
 	/*position: absolute;
@@ -4338,7 +4336,7 @@ h2.modify-search-label {
 	height: 250px;
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-position: 100%;
+	background-position: center;
 }
 .wp-post-image {
 	width: 100%;
@@ -4355,13 +4353,18 @@ h2.modify-search-label {
   display: block;
 }
 
-.datePickerInvalid .SingleDatePicker,
-.form-group .is-invalid {
-  border: 1px solid#e13e4c;
-  background-image: none;
+.datePickerInvalid .SingleDatePicker input,
+.form-group .is-invalid  input{
+  border-color: #e13e4c;
 }
 
 .dropdown-menu.languageCurrency.show{
     width:400px;
     left:-35px !important;
+}
+.search-widget-wrapper .form-group{
+    margin-bottom: 0;
+}
+.search-widget-wrapper .invalid-feedback {
+    margin-top: 0;
 }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
+import staticData from "../../config/static.service";
 
 class HotelListing extends Component {
   render() {
@@ -34,11 +35,9 @@ class HotelListing extends Component {
           </div>
           <div className="col-xl-5 col-sm-5 pl-0 position-relative item-content">
             <div className="item-content-w h-100">
-              <i className="fa fa-star fa-rating"></i>
-              <i className="fa fa-star fa-rating"></i>
-              <i className="fa fa-star fa-rating"></i>
-              <i className="fa fa-star fa-rating"></i>
-              <i className="fa fa-star fa-rating"></i>
+              {_.range(1, hotel.rating + 1).map(id => {
+                return <i key={id} className="fa fa-star fa-rating"></i>;
+              })}
               <h3 className="service-title">
                 <a
                   href="#"
@@ -52,14 +51,25 @@ class HotelListing extends Component {
                 Set in a redbrick building surrounded by palm trees.
               </p>
               <ul className="facilities">
-                <li>Air Conditioning</li>
+                {staticData.amenities().map(amenity => {
+                  if (
+                    amenity.key &&
+                    hotel.amenities.hasOwnProperty(amenity.key)
+                  ) {
+                    if (hotel.amenities[amenity.key]) {
+                      return <li key={amenity.key}>{amenity.label}</li>;
+                    }
+                  }
+                  return null;
+                })}
+                {/* <li>Air Conditioning</li>
                 <li>Airport Transport</li>
                 <li>Fitness Center</li>
                 <li>Flat Tv</li>
                 <li>Heater</li>
                 <li>Internet – Wifi</li>
                 <li>Parking</li>
-                <li>Pool</li>
+                <li>Pool</li> */}
               </ul>
               <div className="d-flex align-items-start flex-xl-row  flex-column  flex-sm-column justify-content-between justify-content-sm-end  reviewWrapper align-items-sm-start align-items-xl-center justify-content-xl-between">
                 <p className="service-location mb-0 pr-0">

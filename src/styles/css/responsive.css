@@ -47,22 +47,22 @@
 	.filter-wrapper .search-label {
 		font-size: 15px;
 	}
-	.search-label ~ a {
+	.search-label ~ a,
+	.car-card .main-details {
 		font-size: 13px;
 	}
-	.price-section .payment-amount .label, 
-	.price-section .payment-amount .value,
-	.price-section .label,
-	.price-section .value {
+	.st-faq-new .item .card-header a {
 		font-size: 13px;
-		font-weight: 500;
-		font-weight: 500;
 	} 
 	.seacrh-hotel-section .service-price {
 		height: 70px;
 	}
 	.freeMember {
 		font-size: 11px;
+	}
+	.price-section .label {
+    	font-size: 13px;
+    	line-height: 28px;
 	}
 } 
 @media (min-width: 992px) {
@@ -82,7 +82,7 @@
 	.navbar-responsive .navbar-dark{
 		background: #002e6d;
 		color:#fff;
-		padding-top: 20px;
+		padding-top: 10px;
 	}
 	.navbar-responsive .navbar-brand {
 		padding-right: 0;
@@ -122,13 +122,16 @@
 	.ft-checkout-page .flightTop .leftWrap{
 		border-right: 0;
 	}
-	.fare-label {
+	.fare-label,
+	.filter-wrapper .material-icons {
 		font-size: 18px;
 	}
 	.ft-checkout-page .customCheckbox,
 	.ft-flight-booking .rs_vertical_middle,
 	.ft-flight-booking .layover-time,
-	.ft-flight-booking .summary-card label {
+	.ft-flight-booking .summary-card label,
+	.filter-wrapper .dateRangepicker,
+	.summary-card label{
 		font-size: 12px;
     }
 	.ft-flight-booking .summary-card label.totalPrice {
@@ -136,20 +139,22 @@
     	font-weight: 300;
 	}
 	.ft-flight-booking .rs_flight_details__time .material-icons,
-	.back,.forgot-password-container .text-muted {
+	.back,.forgot-password-container .text-muted,
+	.filter-wrapper .search-label,
+	.reservation-label,
+	.details {
 		font-size: 14px;
 	} 
-	.reviewWrapper {
-    	height: 28%;
-	}
 	.seacrh-hotel-section .card .item-content {
 		padding: 10px;
 	}
-	.seacrh-hotel-section .card .service-title {
+	.seacrh-hotel-section .card .service-title,
+	.hotelResults {
 		font-size: 16px
 	}
 	.seacrh-hotel-section .item-content .shortDesc,
-	.ft-flight-booking .summary-card label  {
+	.ft-flight-booking .summary-card label,
+	.summary-card label  {
 		line-height: 16px;
 	}
 	.flight-booking-card .rs_text--lighter,
@@ -175,10 +180,255 @@
 	.flight-booking-card .rs_flight_details__time {
 		line-height: 22px;
 	}
-	.ft-flight-booking .container {
+	.container {
 		width: 100%;
 	}
+	.search-label ~ a {
+    	font-size: 11px;
+	}
+	.filter-wrapper .btn-primary {
+		font-size: 15px;
+    	padding: 6px 10px;
+	}
+	.filter-wrapper .date-range {
+		font-size: 13px;
+	}
+	.price-section ul {
+		padding-right: 10px;
+	}
+	.st-checkout-page .cart-info .service-section .service-left h4.title,
+	.st-checkout-page .cart-info .info-section ul li,
+	.st-checkout-page .cart-info .info-section ul li span.value,
+	.st-checkout-page .cart-info .info-section ul li.ad-info ul li span.label,
+	.st-checkout-page .cart-info .info-section ul li.ad-info ul li span.value {
+		font-size: 14px;
+    	line-height: 20px;
+	}
+
+	.st-checkout-page .cart-info .service-section,
+	.st-checkout-page .cart-info .info-section,
+	.st-checkout-page .cart-info .info-section ul li.ad-info ul,
+	.st-checkout-page .cart-info .total-section {
+		padding: 20px 15px;
+	}
+	.rightSideBar h3,
+	.flightSummary h3 {
+		font-size: 16px;
+	    line-height: 13px;
+	    margin-bottom: 0;
+	    padding: 15px 0
+	}
+	.rightSideBar {
+		padding-top: 0;
+	}
+	.st-checkout-page .check-out-form .form-group .form-control {
+		margin-bottom: 0;
+	}
+	.st-checkout-page .st-icheck,
+	.st-description {
+		margin-top: 0;
+	}
+	.card-header .btn-link {
+		font-size: 14px;
+		padding: 9px 15px;
+	}
+	.st-checkout-page .form-group input,
+	.st-checkout-page .form-group .custom-select {
+    	height: 35px;
+    	line-height: 20px;
+    	margin-bottom: 0;
+    	font-size: 14px;
+	}
+	.st-checkout-page .cart-info .service-section .service-right img {
+    	min-width: 85px;
+    	max-height: 85px;
+	}
+	.cancellationText {
+		font-size: 11px;
+	}
+	.text-timer {
+		font-size: 12px;
+	}
+	.faq-sidebar-title:after {
+		width: 60%;
+	}
+	.st-blog .content .article .post-inner h4.post-title,
+	.blog-content .title {
+	    font-size: 20px;
+	    line-height: 24px;
+	    margin-top: 15px;
+	    margin-bottom: 0;
+	}
+	.st-blog .content .article .post-inner .meta ul {
+		flex-wrap: wrap;
+	}
+	.st-blog .content .article .post-inner .meta ul li {
+		margin-right: 0;
+		font-size: 13px;
+		margin-top:10px;
+	}
+	.st-blog .content .article .post-inner .meta {
+		margin-bottom: 20px;
+	}
+	.st-blog .content .article .post-inner a.btn-readmore,
+	.blog-content .st-flex .tags {
+		margin-top: 0;
+	}
+	.st-blog .content .article {
+    	margin-bottom: 20px;
+	}
+	.st-blog {
+		padding: 30px 0;
+	}
 	
+	.st-blog .content .article .post-inner .meta ul li:after {
+		background: none;
+	}
+	.st-blog aside .sidebar-widget {
+    	margin-bottom: 15px;
+	}
+	.st-blog aside .sidebar-widget .sidebar-title, .faq-sidebar .faq-widget {
+		margin-bottom: 10px;
+	}
+	.st-blog aside .sidebar-widget .sidebar-title h4, .faq-sidebar-title {
+		padding-right: 15px;
+		font-size: 14px;
+	}
+	.st-blog aside .sidebar-widget.st_categories_new ul li {
+		margin-bottom: 10px;
+		line-height: 20px;
+	}
+	.st-blog aside .sidebar-widget.st_categories_new ul li span {
+		margin-right: 10px;
+	}
+	.st-blog aside .sidebar-widget.widget_st_list_entries ul li .content .thumb-list-item-title,
+	.st-blog aside .sidebar-widget.widget_st_list_entries ul li .content .thumb-list-item-title a {
+		line-height: 18px;
+		font-size: 13px;
+	}
+	.st-blog aside .sidebar-widget.widget_st_list_entries ul {
+		margin-top: 15px;
+	}
+	.st-blog aside .sidebar-widget.widget_tag_cloud .tagcloud a {
+		font-size: 10px !important;
+		padding: 5px 13px;	
+	}
+	.blog-content .post-info {
+		margin-top: 5px;
+	}
+	.blog-content .post-content{
+		margin-top: 20px;
+	}
+	.blog-content .st-flex {
+    	margin-top: 30px;
+    	flex-wrap: wrap;
+	}
+	.blog-content .author-info {
+		margin-top: 30px;
+		padding: 20px;
+	}
+	#comment-wrapper ol li {
+    	padding-top: 20px;
+    	padding-bottom: 20px;
+	}
+	#comment-wrapper ol li .comment-content {
+		margin-top: 15px;
+	}
+	.st-blog-details .blog-content .pagination {
+		margin-top: 30px;
+	}
+	#respond {
+		padding:20px;
+	}
+	.st-blog aside .sidebar-widget.widget_st_list_entries ul li .content .cate {
+    	line-height: 15px;
+    	margin-bottom: 4px;
+	}
+	.profileSummaryWrapper .contentWrapper li {
+		margin-right: 30px;
+    	flex: 1 1 30%;
+    	margin-bottom: 20px;
+	}
+	.profileSummaryWrapper .contentWrapper li strong {
+    	font-size: 24px;
+    	line-height: 45px;
+	}
+	.profileSummaryWrapper .navbar {
+		margin-bottom: 20px;
+	}
+	.shareCardsWrapper .st-tabs .nav-tabs li a {
+    	padding: 20px 35px;
+	}
+	.tab-title {
+		font-size: 23px;
+	}
+	body .ag-theme-balham .ag-ltr .ag-cell {
+		line-height: 17px;
+		font-size: 12px;
+	}
+	.membershipRibbon {
+		padding: 10px;
+   		height: 125px;
+    	width: 90px;
+    	font-size: 11px;
+   		padding-top: 23px;
+	}
+	.shareCardsWrapper {
+		padding-bottom: 0;
+		margin-bottom: 0;
+	}
+	.otherModesWrapper {
+		padding-bottom: 15px;
+	}
+	.contentWrapper {
+    	padding: 0 20px 40px;
+	}
+	.profileSummaryWrapper .dropdown-content {
+		min-width: 193px;
+	}
+	.profileSummaryWrapper .dropdown-content a {
+		padding: 5px 16px;
+		line-height: 21px;
+		font-size: 13px;
+	}
+	.profileSummaryWrapper .navbar a,
+	.profileSummaryWrapper .dropdown .dropbtn {
+		font-size: 15px;
+	}
+	.getInspired .imageWrapper {
+    	max-height: 150px;
+    }
+    .getInspired .content {
+    	padding: 9px 20px;
+    	min-height: 140px;
+	}
+	.grayBg .content h4 {
+    	font-size: 16px;
+	}
+	.grayBg .content p {
+		font-size: 14px;
+    	line-height: 19px;
+    	margin-bottom: 0;
+	}
+	.whyUs .why_ros_info .why_ros_canvas p {
+		font-size: 13px;
+		margin-top: 7px;
+	}
+	footer .contactLinks h4 {
+    	font-size: 16px;
+	}
+	.whyUs .why_ros_info .why_ros_canvas h2 {
+		font-size: 16px;
+	}
+	.filter-wrapper .search-title h5 {
+		font-size: 18px;
+	}
+	.st-content-wrapper {
+    	padding-bottom: 40px;
+	}
+	.filter-xs input.form-control {
+		line-height: 1;
+	}
 }
 @media (max-width: 767px) {
 	.bannerWrapper,
@@ -189,7 +439,7 @@
 		min-height: auto;
 	}
 	.homeTabs .tab-content>.tab-pane {
-		padding-bottom: 20px;
+		padding: 15px 15px 20px 15px;
 		margin-bottom: 20px;
 	}
 	.navbar-responsive {
@@ -199,24 +449,25 @@
 	.from-to-img,
 	.btn-need-help,
 	.bannerSlideShow .contentWrapper,
-	.hotelResults {
+	.hotelResults,
+	.st-faq-new .material-icons,
+	.forgot-password-container .btn-cancel{
 		display: none;
 	}
 	.tabsWrapper .nav-tabs {
-		padding: 10px 10px 15px 10px; 
+		padding: 0 20px; 
 		justify-content: start;
+		position: relative;
 	}
 	.tabsWrapper .nav-tabs .nav-link {
 		font-size: 70%;
-    	margin-top: 9px;
+    	/*margin-top: 9px;*/
     	padding: 2px 8px;
-	}
-	footer .contactLinks h4 {
-    	font-size: 16px;
+    	display: inherit;
 	}
 	.homeTabs .custom-radio,
 	.flight-sort-dropdown .container-radio,
-	.dropdown-menu-right .container-radio{
+	.dropdown-menu-right .container-radio,{
 		font-size: 13px;
 		padding-left: 20px;
 	}
@@ -245,34 +496,20 @@
 	.tabsWrapper .w-75 {
 		width: 63% !important;
 	}
-	.popularDestinations .container,
-	.getInspired .container,
-	.whyUs .container,
-	.mailchimp .container,
-	footer .container,
-	.bottomFooter .container,
-	.search-background .container,
-	.bannerWrapper .container,
-	.trvlr-flight-search .container,
-	.ft-checkout-page .container,
-	.ft-flight-booking .container,
-	.seacrh-hotel-section .container {
-		width: 100%;
-	}
 	.popularDestinations.destinationSection {
 		padding-top: 50px;
 	}
 	.popularDestinations .sectionHeading,
 	.whyUs .sectionHeading {
-		font-size: 24px;
-    	line-height: 35px;
+		font-size: 21px;
+    	line-height: 22px;
     	margin-top: 0;
 	}
 	.popularDestinations .sectionSubHeading {
-		font-size: 18px;
-    	line-height: 30px;
-    	margin-top: 20px;
-    	margin-bottom: 0;
+		font-size: 13px;
+    	line-height: 16px;
+    	margin-top: 15px;
+    	margin-bottom: 10px;
 	}
 	.flight-section {
 		flex-direction: column;
@@ -308,7 +545,7 @@
 	}
 	.getInspired.section,
 	.whyUs.section {
-		padding-top: 50px;
+		padding-top: 30px;
 
 	}
 	.mailchimp {
@@ -316,12 +553,12 @@
 		padding-bottom: 30px;
 	}	
 	.getInspired.section {
-		padding-bottom: 40px;
+		padding-bottom: 30px;
 	}
 	.getInspired .sectionHeading {
-    	margin-bottom: 30px;
-    	font-size: 25px;
-    	line-height: 34px;
+    	margin-bottom: 20px;
+    	font-size: 21px;
+    	line-height: 25px;
 	}
 	.getInspired .imageWrapper {
     	max-height: 160px;
@@ -340,21 +577,28 @@
 	}
 	.whyUs .why_ros_info .why_ros_canvas {
 		border-right: 0;
-	    padding: 5px 20px;
-	    margin-bottom: 0;
-	    padding-bottom: 0;
-	    min-height: 150px;
+    	padding: 5px 20px;
+    	margin-bottom: 20px;
+    	padding-bottom: 0;
+    	min-height: auto;
+    	margin-top: 0;
 	}
 	.whyUs .why_ros_info .why_ros_canvas h2 {
-		font-size: 22px;
+		font-size: 18px;
+		margin-bottom: 7px;
 	}
 	.whyUs i {
-		font-size: 40px;
-    	margin: 0px 0 15px;
+		font-size: 35px;
+    	margin: 0px 0 4px;
 	}
 	.whyUs .why_ros_info .why_ros_canvas p {
-		font-size: 17px;
-		margin-top: 15px;
+		font-size: 14px;
+    	margin-top: 0;
+    	line-height: 20px;
+    	margin-bottom: 0;
+	}
+	.whyUs .why_ros_info .last {
+		margin-bottom: 0 !important
 	}
 	.mailchimp .media .media-object {
 		top: 0;
@@ -362,32 +606,38 @@
 	.mailchimp .st-heading-section {
 		font-size: 17px;
 	}
-	.mailchimp .c-grey {
+	.mailchimp .c-grey,
+	.details,
+	.car-card .primary-details {
 		font-size: 14px;
 	}
 	.mailchimp .media {
 		margin-bottom: 20px;
 	}
-	footer {
+	footer,
+	body .facilityTab.tab-pane {
 		padding-top: 20px;
 		padding-bottom: 20px;
 	}
 	footer h5 {
-    	margin-bottom: 20px;
+    	margin-bottom: 10px;
     	font-size: 16px;
     	margin-top: 10px;
 	}
-	.footerLink li {
+	.footerLink li,
+	.st-description,
+	.item-content .shortDesc {
 		margin-bottom: 10px;
 	}
 	.powerText {
-		text-align: left;
-		margin-top: 20px;
+		text-align: center;
+		margin-top: 10px;
 		margin-bottom: 10px;
 	}
 	.powerText ~ img {
-		float: left;
+		float: none;
 		width: 120px;
+		margin: 0 auto;
 	}
 	.submitBtn {
     	padding: 6px 10px 6px 20px;
@@ -467,7 +717,10 @@
 		line-height: 23px;
 	}
 	.flight-sort-dropdown .container-radio,
-	.seacrh-hotel-section .container-radio {
+	.seacrh-hotel-section .container-radio,
+	.facilities,
+	.search-result-page .dropdown-menu-right .container-radio,
+	.search-flights-multi .dropdown-menu-right .container-radio {
 		margin-bottom: 5px;
 	}
 	.flight-sort-dropdown .sort-title,
@@ -477,9 +730,9 @@
 	}
 	.flight-sort-dropdown .price-title,
 	.dropdown-menu-right .price-title {
-	    margin-bottom: 7px;
-	    margin-top: 6px;
-	    font-size: 13px;
+	    margin-bottom: 2px;
+    	margin-top: 15px;
+    	font-size: 13px;
 	}
 	.flightTop .priceDiv {
 		font-size: 16px;
@@ -499,12 +752,18 @@
 	}
 	.flightTop .flightLogo {
 		text-align: left;
+		letter-spacing: 0;
+	}
+	.timer .material-icons {
+    	vertical-align: text-top;
 	}
 	.flightLogo img,
 	.flightLogo span {
 		display: inline-block;
 	}
-	.flightLogo span {
+	.flightLogo span,
+	body .st-tabs .nav-tabs li a,
+	.st-blog .content .article .header .cate ul li a {
 		font-size: 12px;
 	}
 	.stopStatus {
@@ -547,9 +806,13 @@
 	.seacrh-hotel-section .card .item-content-w {
 		border:0;
 	}
-	.rs_text_bold,
-	.rs_flight_details__time {
+	.rs_flight_details__header .rs_text_bold,
+	.rs_flight_details__header .rs_flight_details__time {
 		font-size: 14px;
+		float: none;
+    	margin-left: 0;
+    	margin-bottom: 3px;
+    	line-height: 15px;
 	}
 	.rs_flight_details__highlightBar {
 		margin-top: 5px;
@@ -592,8 +855,9 @@
 		padding: 7px 4px;
 	}
 	.ft-flight-booking .card-header{
-		padding: 5px 19px;
-    	font-size: 15px;
+		padding: 13px 15px;
+    	font-size: 14px;
+    	line-height: 16px;
 	}
 	.ft-flight-booking .rs_flight_details__leg__left {
 		margin-right: 10px;
@@ -614,8 +878,11 @@
 	.ft-flight-booking .rs_flight_details__time {
 		margin-top: 5px;
 	}
-	.ft-flight-booking .rs_flight_details__time .material-icons {
+	.ft-flight-booking .rs_flight_details__time .material-icons,
+	.head span.text-rating,
+	.summary-card label{
 		font-size: 14px;
+
 	}
 	.ft-flight-booking .rs_text--lighter {
 		line-height: 18px;
@@ -624,7 +891,8 @@
 		width: 100%;
 		margin-top: 0;
 	}
-	.ft-flight-booking .rs_air_leg_table td {
+	.ft-flight-booking .rs_air_leg_table td,
+	.facilityHeading {
 		line-height: 20px;
 	}
 	.ft-flight-booking .rs_flight_details__highlightBar .layover-time {
@@ -652,19 +920,20 @@
 	.borderDashed.p-3 {
 		padding: .5rem!important
 	}
-	.borderDashed p,
-	.price-section .label {
-		font-size: 14px;
+	.borderDashed p{
+		font-size: 11px;
     	line-height: 24px;
 	}
 	.booking,
 	.summary-card label.totalPrice,
-	.ft-flight-booking .collapse-title,
+	.collapse-title,
 	.filter-wrapper .collapse-title,
-	.seacrh-hotel-section .card .fa-rating,
+	.fa-rating,
 	.seacrh-hotel-section .card .service-title,
 	.login-help-form p,
-	.supportContact {
+	.supportContact,
+	.facilityHeading,
+	.cancellationText {
 		font-size: 16px;
 	}
 	.summary-card {
@@ -676,7 +945,8 @@
 	.seacrh-hotel-section .card .item-content-w {
 		padding: 0 15px;
 	}
-	.seacrh-hotel-section .card .service-title {
+	.seacrh-hotel-section .card .service-title,
+	.st-checkout-page {
 		margin-top: 0;
 	}
 	.seacrh-hotel-section .item-content .shortDesc,
@@ -684,9 +954,8 @@
 		line-height: 17px;
 	}
 	.seacrh-hotel-section .item-content .reviewWrapper {
-		height: 20%;
 		padding-top: 5px;
-    	padding-bottom: 5px;
+    	padding-bottom: 8px;
 	}
 	.seacrh-hotel-section .card .position-relative.pt-4 {
 		padding-top: 0.5rem !important;
@@ -696,7 +965,7 @@
 		padding-right: 15px;
 	}
 	.price-section ul {
-		padding-top: 12px;
+		padding-top: 16px;
 		padding-right: 0;
 	}
 	.seacrh-hotel-section .service-price {
@@ -730,19 +999,22 @@
     	min-width: 290px;
     	min-height: 250px;
 	}
-	.login-card h1 {
+	.login-card h1 ,
+	.password-container h2,
+	.login-help h2 {
 		font-size: 23px;
 		margin-bottom: 20px;
 	}
 	.login-card input.form-control {
 		height: 30px;
 	}
-	.btn-signin {
+	.btn-signin,
+	.search-flights-multi .priceDiv  {
 		margin-top: 20px;
 	}
 	.login-wrapper .login-form, 
 	.login-wrapper .login-help-form {
-		height: calc(100vh - 46px);
+		height: 100vh;
 	}
 	.btn-signin {
     	padding: 5px 10px 5px 20px;
@@ -752,18 +1024,21 @@
     }
     .login-help-form .login-help{
     	width: 290px;
-    	height: 190px;
-    	padding: 7px 20px;
+    	height: auto;
+    	padding: 7px 20px 20px;
     	min-height: auto
     }
     .login-help h2 {
-    	font-size: 16px;
-    	margin-bottom: 3px;
+    	margin: 10px 0 15px 0;
+    	text-align: center;
     }
-    .login-help-form p,
     .label-blue {
     	font-size: 12px;
     	line-height: 16px;
+    }
+    .login-help-form p {
+    	font-size: 14px;
+    	line-height: 20px;
     }
     .login-help .form-control {
     	height: 30px;
@@ -783,7 +1058,7 @@
 
 	.reset-pwd-wrapper .login-help {
 	    width: 290px;
-	    height: 270px;
+	    height: auto;
 	    padding: 10px 20px;
 	    min-height: auto;
 	}
@@ -795,14 +1070,275 @@
 	}
 	.reset-pwd-wrapper .btn-signin {
     	padding: 5px 10px 5px 10px;
+    	width: 50%;
+    	margin-top:10px;
 	}
-	.forgot-password-container .text-muted {
+	.forgot-password-container .text-muted,
+	.st-hotel-content,
+	footer h5:after {
 		margin-top: 10px;
 	}
 	.label-blue {
 		padding:5px 20px;
 	}
+	.st-heading {
+		font-size: 20px;
+		line-height: 20px;
+		margin: 5px 0;
+	}
+	.head span.head-rating {
+		font-size: 18px;
+		line-height: 20px;
+	}
+	.head .score {
+		padding: 5px 10px 0px 10px;
+		font-size: 19px;
+		min-height: 35px;
+    	width: 60px;
+	}
+	.head .score:after {
+	    left: -10px;
+	    border-bottom: 15px solid #002e6d;
+	}
+	.foot {
+		text-align: left;
+	}
+	.st-content-wrapper .st-breadcrumb ul li:not(:last-child):after {
+		background: #002e6d;
+	}
+	body .st-tabs .nav-tabs li {
+	    padding-left: 5px;
+	    padding-right: 5px;
+	}
+	.facilityTab .item .material-icons {
+		font-size: 19px;
+	}
+	.st-heading-section {
+		font-size: 20px;
+	}
+	.rooms-section .heading {
+		margin: 15px 0;
+		font-size: 16px;
+	}
+	.st-content-wrapper {
+		padding-bottom: 30px;
+	}
+	.st-icheck-item .card .row,
+	.st-checkout-page .check-out-form .form-group .form-control,
+	.st-checkout-page .st-icheck,
+	.st-checkout-page {
+		margin: 0
+	}
+	.check-out-form h4 {
+    	padding: 15px;
+    	font-size: 13px;
+	}	
+	.st-icheck.rightAlign,
+	.rightSideBar h3, 
+	.summary-card .bg-light,
+	.search-flights-multi .priceDiv,
+	.search-flights-multi .priceDiv .service-price {
+		text-align: center;
+	}
+	.rightSideBar {
+		padding-top: 0;
+	}
+	.widget-tab-wrapper {
+		padding: 0px 27px;
+    	overflow: hidden;
+    	width: calc(100% - 22px);
+	}
+	.widget-tab-wrapper .nav {
+		display: block;
+	    white-space: nowrap;
+	    width: 100%;
+	    overflow-x: auto;
+	    flex: none;
+	    flex-wrap: nowrap;
+    }
+    .widget-tab-wrapper .nav-item ,
+    .destination-tab-wrapper .nav-tabs .nav-item{
+    	display: inline;
+    	white-space: nowrap;
+    }
+    .homeTabs a.text-white {
+    	line-height: 40px;
+    }
+    .homeTabs .fa,
+    .destination-tab-wrapper .fa,
+    .faq-tab .fa {
+    	font-size: 18px;
+    	vertical-align: middle;
+    }
+    .destination-tab-wrapper {
+    	display: flex;
+    }
+    .destination-tab-wrapper .destination-tab {
+    	width: 100%;	
+    	overflow: hidden;
+    	padding: 0 15px;
+    }
+    .destination-tab-wrapper .nav-tabs {
+    	display: block;
+    	white-space: nowrap;
+    	width: 100%;
+    	overflow-x: auto;
+    }
+    .destination-tab-wrapper .nav-item {
+    	display: inline;
+    	white-space: nowrap;
+	}
+	.destination-tab-wrapper .nav-link {
+		display: inherit;
+	}
+	.faq-tab {
+		display: flex;
+		overflow: hidden;
+		align-items: center;
+	}
+	.faq-tab-wrapper {
+		width: calc(100% - 15px);
+    	overflow: hidden;
+    	padding: 0 15px;
+	}
+	.faq-tab-container {
+		display: block;
+    	white-space: nowrap;
+    	width: 100%;
+    	overflow-x: auto;
+	}
+	.blog-page .col-xl-3.pr-0 {
+		padding-right: 15px !important
+	}
+	.faq-sidebar .nav-pills .nav-link {
+		padding: 0 10px;
+		display: inline;
+    	white-space: nowrap;
+    	border-bottom: 0;
+    	border-left: 0 !important;
+    	border-bottom: 2px solid transparent;
+    	
+	}
+	.faq-sidebar .nav-pills .nav-link.active {
+		background: transparent;
+    	border-left: 0;
+    	border-bottom: 2px solid #6ec0e5;
+    	border-left: 0 !important
+	}
+	.faq-section {
+		margin-top: 15px;
+		padding-bottom: 0;
+	}
+	.language-text {
+		padding: 0;
+    	font-weight: 500;
+    	font-size: 13px;
+    	color: #1b3563;
+    	text-decoration: none;
+	}
+	.language-text:active,
+	.language-text:hover {
+		color: #1b3563;
+	}
+	.language-text:hover {
+		padding: 0;
 
+	}
+	.homeTabs input.form-control,
+	.homeTabs input.typeahead-input,
+	.homeTabs .custom-select,
+	.homeTabs input.js-typeahead-country_v1,
+	.homeTabs label  {
+		font-size: 14px;
+	}
+	.homeTabs label.custom-radio {
+		padding-left: 19px;
+	}
+	.homeTabs label {
+		margin-bottom: 0;
+	}
+	.homeTabs input.typeahead-input, 
+	.homeTabs input.js-typeahead-country_v1 {
+		padding-top: 7px;
+	}
+	.homeTabs .typeahead__container .icon-font, 
+	.homeTabs.typeahead__container .icon-font {
+    	top: 9px;
+	}
+	.bottomFooter {
+		text-align: center;
+		padding: 20px 0;
+	} 
+	.logo-img-wrapper {
+		max-width: 140px;
+		margin: 15px 0;
+	}
+	.flightTop {
+		padding: 20px 0;
+	}
+	.flightRow.align-items-center {
+		align-items: start !important;
+	}
+	.rs_text--lighter {
+		padding-left: 5px;
+    	letter-spacing: 1px;
+    	margin-bottom: 10px;
+    	margin-top: 3px;
+	}
+	.rs_flight_details__time .material-icons {
+    	font-size: 15px;
+	}
+	.rs_air_leg_table {
+		width: 100%;
+	}
+	.seacrh-hotel-section .hotel-list-img {
+    	height: 250px;
+	}
+	.search-flights-multi .flightRow {
+		margin-bottom: 25px;
+	}
+	.search-flights-round .priceDiv{
+		margin-top: 0;
+	}
+	.search-flights-round .flightTop .btn.btn-outline-secondary,
+	.search-flights-multi .flightTop .btn.btn-outline-secondary {
+		padding: 4px 20px;
+	}
+	.bg-white.faq-section {
+		background: none !important;
+		padding-left: 15px !important;
+		padding-right: 15px !important;
+	}
+	.st-faq-new {
+		background: #fff;
+    	padding-left: 15px;
+    	padding-right: 15px;
+	}
+	.st-faq-new .item .card-header {
+		margin-bottom: 0;
+		padding-top: 20px;
+	}
+	.faq-sidebar-title:after {
+    	width: 40%;
+	}
+	.st-blog .content .article .header .cate ul li a {
+		padding: 2px 10px;
+	}
+	.st-icheck-item .search-hotel-img {
+    	min-height: 265px;
+	}
+	.price-section .label,
+	.price-section .value,
+	.price-section .payment-amount .value {
+		font-size: 12px;
+		line-height: 17px;
+	}
+	.price-section li {
+		margin-bottom: 8px;
+	}
+	.price-section li.payment-amount {
+		margin-bottom: 0;
+	}
 } 
 @media (min-width: 768px) {
 	.navbar-responsive {
@@ -818,6 +1354,21 @@
 		font-size: 15px;
     	line-height: 22px;
 	}
+	.facilityTab .material-icons {
+		font-size: 16px;
+	}
+	.carsList .footer-inner .service-price {
+		white-space: nowrap;
+	}
+	.carsList .service-price .price {
+    	font-size: 12px;
+    }
+    .search-result-page .grid-item .section-footer .unit {
+    	font-size: 11px;
+    }
+    .fotorama__wrap--css3 .fotorama__stage .fotorama__img {
+		height: 100% !important;
+    }
 }
 @media (min-width: 768px) and (max-width:992px) {
 	.bannerSlideShow .slide .contentWrapper {
@@ -837,5 +1388,82 @@
 	.ft-flight-booking .faq-card {
 		margin-top: 30px;
 	}
+	.booking-section .mr-3 {
+    	margin-right: 0rem!important;
+	}
+	.rooms-section .heading {
+		font-size: 16px;
+	}
+	.st-heading {
+		margin: 5px 0;
+		font-size: 23px;
+	}
+	.booking-section .material-icons {
+		padding: 5px;
+	}
+	.rooms-section .heading {
+		margin-top: 20px;
+		margin-bottom: 10px;
+	}
+	.filter-wrapper .customCheckbox {
+		padding-left: 22px;
+		line-height: 18px;
+    	padding-top: 2px;
+    	font-size: 12px;
+	}
+	a.map-view {
+		min-height: 50px;
+		line-height: 65px;
+		background: url(https://mixmap.travelerwp.com/wp-content/themes/traveler/v2/images/map-view.png) top center no-repeat;
+		font-size: 14px;
+	}
+	.filter-wrapper .st-icheck-item label .fa{
+    	font-size: 16px;
+    }
+    .filter-wrapper .collapse-title {
+    	font-size: 16px;
+    }
+    .hoteSearch .btn{
+		width: 100%;
+    }
+    .reviewWrapper {
+    	padding: 10px 0;
+	}
+	.whyUs .why_ros_info {
+		border-right: 1px solid #dbe3e8;
+    	display: flex;
+	}
+	.whyUs .why_ros_info,
+	.whyUs .why_ros_info .last {
+		border-right: 0
+	}
+	.filter-wrapper .search-title h5,
+	.hotel-detail .filter-wrapper .search-title h5 {
+    	font-size: 13px;
+	}
+	.search-hotel-img {
+		height: 285px;
+	}
+	.widget-box .heading {
+		font-size: 16px;
+	}
+	.price-section .label,
+	.price-section .value,
+	.price-section .payment-amount .value {
+		font-size: 13px;	
+	}	
+	.price-section .label {
+		line-height: 20px;
+	}
 
+}
+
+@media(min-width: 600px) {
+	.seacrh-hotel-section .hotel-list-img {
+    	height: 300px;
+	}
+	.ft-flight-booking .summary-card label.totalPrice {
+    	font-size: 12px;
+    	font-weight: 300;
+	}
 }

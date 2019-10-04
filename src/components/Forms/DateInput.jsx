@@ -38,7 +38,10 @@ class DateInput extends Component {
       <div className="form-group">
         {label && <label htmlFor={name}>{label}</label>}
         {!isRequired && <span className="optionalLabel"> (Optional)</span>}
-        <div className={isValidClass}>
+        <div className={isValidClass + " datepicker-container"}>
+          <span className="icon-font text-muted">
+            <i className="bx bx-calendar"></i>
+          </span>
           <SingleDatePicker
             date={value}
             onDateChange={onDateChange}

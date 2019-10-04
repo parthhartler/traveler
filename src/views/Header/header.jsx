@@ -45,66 +45,75 @@ class Header extends Component {
     return (
       <Fragment>
         <header className={headerClass}>
-          {/* <div className="navbar-responsive">
-          <nav className="navbar navbar-expand-md navbar-dark">
-            <a className="navbar-brand" href="#">
-              <img src="../../assets/images/logo.png" alt="Travelers" />
-            </a>
+          <div className="navbar-responsive">
+            <nav className="navbar navbar-expand-md navbar-dark">
+              <a className="navbar-brand" href="/homepage">
+                <img src={logo} alt="Travelers" />
+              </a>
 
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#collapsibleNavbar"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
+              <button
+                className="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#collapsibleNavbar"
+              >
+                <span className="navbar-toggler-icon"></span>
+              </button>
 
-            <div className="collapse navbar-collapse" id="collapsibleNavbar">
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <a className="nav-link text-uppercase" href="#">
-                    english - united states
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link text-uppercase" href="#">
-                    resource center
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link text-uppercase" href="my-wallet.html">
-                    my wallet
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link text-uppercase" href="gift-card.html">
-                    traveler rewards
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link text-uppercase" href="my-bookings.html">
-                    My Bookings
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link text-uppercase" href="#">
-                    My Account &amp; Settings
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link text-uppercase" href="#">
-                    Log Out
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div> */}
+              <div className="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul className="navbar-nav">
+                  <li className="nav-item">
+                    <a className="nav-link text-uppercase" href="#">
+                      english - united states
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link text-uppercase" href="#">
+                      resource center
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a
+                      className="nav-link text-uppercase"
+                      href="my-wallet.html"
+                    >
+                      my wallet
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a
+                      className="nav-link text-uppercase"
+                      href="gift-card.html"
+                    >
+                      traveler rewards
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a
+                      className="nav-link text-uppercase"
+                      href="my-bookings.html"
+                    >
+                      My Bookings
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link text-uppercase" href="#">
+                      My Account &amp; Settings
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link text-uppercase" href="#">
+                      Log Out
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
           <div className="container position-relative nav-md">
             <div className="row">
               <div className="col-lg-3 col-md-3 logoWrapper">
-                <a href="#">
+                <a href="/homepage">
                   <img
                     src={whiteBackground ? logo_blue : logo}
                     alt="Travelers"
