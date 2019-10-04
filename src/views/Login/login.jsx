@@ -107,9 +107,7 @@ class Login extends Component {
                       <input type="checkbox" checked />
                       <span className="checkmark"></span>
                     </label>
-                    <a href="login-help.html" className="text-white ml-auto">
-                      Need help?
-                    </a>
+                    <a className="text-white ml-auto">Need help?</a>
                   </div>
                 </form>
               </div>

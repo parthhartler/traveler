@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
 export const Input = props => {
-  const { name, label, isRequired = false } = props;
+  const { name, label, isRequired = false, mutedLabelText = "" } = props;
 
   let formFields = "";
 

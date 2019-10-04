@@ -1,7 +1,13 @@
 import React, { Fragment } from "react";
 
 export const Input = props => {
-  const { name, label, parentClass, isRequired = false } = props;
+  const {
+    name,
+    label,
+    parentClass,
+    isRequired = false,
+    mutedLabelText
+  } = props;
 
   let formFields = <InputTag {...props} />;
 
@@ -9,7 +15,12 @@ export const Input = props => {
     <div className={parentClass}>
       {label && (
         <label htmlFor={name} className="label">
-          {label}
+          {label}{" "}
+          {mutedLabelText && (
+            <small className=" text-muted font10 line-1">
+              {mutedLabelText}
+            </small>
+          )}
         </label>
       )}
       {!isRequired && <span className="optionalLabel"> (Optional)</span>}
@@ -31,7 +42,8 @@ const InputTag = props => {
     placeholder,
     disabled,
     onIncrement,
-    onDecrement
+    onDecrement,
+    iconClassName
   } = props;
 
   let fieldClass = className ? "form-control " + className : "form-control";
@@ -50,7 +62,7 @@ const InputTag = props => {
     <Fragment>
       <div className="form-icon-left">
         <span className="icon-font text-muted">
-          <i className="bx bx-home-alt"></i>
+          <i className={iconClassName}></i>
         </span>
         <div className="input-group  bootstrap-touchspin bootstrap-touchspin-injected">
           <input

@@ -1,8 +1,8 @@
 export const headerLinks = [
   {
-    label: "my bookings",
-    link: "/my_bookings",
-    slug: "my_bookings"
+    label: "bookings",
+    link: "/bookings",
+    slug: "bookings"
   },
   {
     label: "resource center",
@@ -10,14 +10,14 @@ export const headerLinks = [
     slug: "resource_center"
   },
   {
-    label: "my wallet",
-    link: "/my_wallet",
-    slug: "my_wallet"
+    label: "wallet",
+    link: "/wallet",
+    slug: "wallet"
   },
   {
-    label: "traveler rewards",
-    link: "/traveler_rewards",
-    slug: "traveler_rewards"
+    label: "dashboard",
+    link: "/dashboard",
+    slug: "dashboard"
   }
 ];
 

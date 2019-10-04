@@ -43,11 +43,11 @@ class HotelWidget extends Component {
       rooms: Yup.number()
         .required("This field is required.")
         .typeError(digitAllowed)
-        .min(1),
+        .min(1, "Please select at least 1 room."),
       adults: Yup.number()
         .required("This field is required.")
         .typeError(digitAllowed)
-        .min(1),
+        .min(1, "Please add at least 1 adult."),
       children: Yup.number()
         .required("This field is required.")
         .typeError(digitAllowed)
@@ -174,6 +174,7 @@ class HotelWidget extends Component {
                     parentClass="form-group form-spin-group"
                     label="Rooms"
                     name="rooms"
+                    iconClassName="bx bx-home-alt"
                     isRequired
                     value={values.rooms}
                     onChange={handleChange}
@@ -192,6 +193,8 @@ class HotelWidget extends Component {
                     parentClass="form-group form-spin-group"
                     label="Adults"
                     name="adults"
+                    mutedLabelText="(12-75)"
+                    iconClassName="bx bx-user"
                     isRequired
                     value={values.adults}
                     onChange={handleChange}
@@ -210,7 +213,9 @@ class HotelWidget extends Component {
                     parentClass="form-group form-spin-group"
                     label="Children"
                     name="children"
+                    mutedLabelText="(2-12)"
                     isRequired
+                    iconClassName="bx bx-user"
                     value={values.children}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -288,6 +293,8 @@ class HotelWidget extends Component {
     if (selected.length) {
       this.setState({ destinations: [] });
       formikProps.setFieldValue("destination", selected[0]);
+    } else {
+      formikProps.setFieldValue("destination", null);
     }
   };
 }

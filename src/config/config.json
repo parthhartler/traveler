@@ -3,5 +3,8 @@
   "base_auth_url": "https://perkzza-dev-api-users.hartleylab.com/",
   "const": {
     "DATE_FORMAT": "MM/DD/YYYY"
+  },
+  "hotel": {
+    "page_size": 10
   }
 }

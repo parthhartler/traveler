@@ -8,6 +8,12 @@ import { DateRangeInput } from "../../components/Forms/DateRangeInput";
 import commonService from "../../api/commonService";
 import Header from "../Header/header";
 import { hotelAction } from "../../store/actions";
+import HotelListing from "./hotelListing";
+import auth from "../../api/authService";
+import config from "../../config/config.json";
+import Pagination from "../../components/pagination";
+import Loader from "../../components/Loader/Loader";
+import * as Yup from "yup";
 
 const countArray = [
   { value: "0", label: "0" },
@@ -17,7 +23,7 @@ const countArray = [
   { value: "4", label: "4" }
 ];
 
-class HotelSearch extends Component {
+class HotelSearchWrapper extends Component {
   constructor(props) {
     super(props);
 
@@ -25,20 +31,85 @@ class HotelSearch extends Component {
       initVal: { ...this.props.hotelWidget },
       acLoading: false,
       destinations: [],
-      isWidgetDisabled: true
+      isWidgetDisabled: true,
+      currentPage: 1
     };
+
+    this.validationRules = Yup.object().shape({
+      destination: Yup.object()
+        .nullable()
+        .required("This field is required."),
+      check_in: Yup.object()
+        .nullable()
+        .required("This field is required."),
+      check_out: Yup.object()
+        .nullable()
+        .required("This field is required."),
+      adults: Yup.number()
+        .required("This field is required.")
+        .typeError("Only digits are allowed.")
+        .min(1),
+      children: Yup.number()
+        .required("This field is required.")
+        .typeError("Only digits are allowed.")
+        .min(0)
+    });
   }
 
   render() {
+    const { loading } = this.props;
     return (
       <Fragment>
+        {loading && <Loader isLoading={loading} />}
         <Header whiteBackground={true} />
-        {this.renderForm()}
+        {this.renderWidgetForm()}
+        {this.renderHotelListings()}
       </Fragment>
     );
   }
 
-  renderForm = () => {
+  buildQueryStringParams = (hotelWidget, page) => {
+    const qsParams = {
+      adult_count: hotelWidget.adults,
+      cachebuster: 9630264,
+      check_in_date: hotelWidget.check_in
+        ? hotelWidget.check_in.format("YYYY-MM-DD")
+        : null,
+      check_out_date: hotelWidget.check_out
+        ? hotelWidget.check_out.format("YYYY-MM-DD")
+        : null,
+      children_count: hotelWidget.children,
+      city_name: hotelWidget.destination ? hotelWidget.destination.label : "",
+      currency: "USD",
+      home: false,
+      locale: "en-US",
+      native_currency_symbol: "$",
+      onlyLocale: "en-US",
+      optional: "amenities",
+      region_id: hotelWidget.destination ? hotelWidget.destination.id : "",
+      room_count: hotelWidget.rooms,
+      search_type: "hotel",
+      source_market: "US",
+      token: auth.getCurrentUser(),
+      type: "city",
+      use_wallets: 0,
+      "paging[page_number]": page,
+      "paging[per_page]": config.hotel.page_size
+    };
+    return qsParams;
+  };
+
+  async componentDidMount() {
+    const { hotelWidget } = this.props,
+      qsParams = this.buildQueryStringParams(
+        hotelWidget,
+        this.state.currentPage
+      );
+
+    await this.props.getHotelListings(qsParams);
+  }
+
+  renderWidgetForm = () => {
     const { initVal } = this.state;
 
     return (
@@ -141,20 +212,63 @@ class HotelSearch extends Component {
                   value={countArray[values.children]}
                 />
               </div>
-              <div className="col-xl-2 col-sm-4 align-self-end">
-                <button
-                  type="submit"
-                  className="btn btn-primary text-uppercase btn-block btn-edit"
-                  //onClick={handleSubmit}
-                >
-                  {buttonText}
-                </button>
-              </div>
+              {this.state.isWidgetDisabled ? (
+                <div className="col-xl-2 col-sm-4 align-self-end">
+                  <button
+                    type="button"
+                    className="btn btn-primary text-uppercase btn-block btn-edit"
+                    onClick={this.handleEdit}
+                  >
+                    {buttonText}
+                  </button>
+                </div>
+              ) : (
+                <div className="col-xl-2 col-sm-4 align-self-end">
+                  <button
+                    type="submit"
+                    className="btn btn-primary text-uppercase btn-block btn-edit"
+                    //onClick={handleSubmit}
+                  >
+                    {buttonText}
+                  </button>
+                </div>
+              )}
             </div>
           </form>
         </div>
       </div>
     );
+  };
+
+  renderHotelListings = () => {
+    const { hotelListingsData } = this.props;
+    let itemCount = 0;
+    if (
+      hotelListingsData &&
+      hotelListingsData.data &&
+      hotelListingsData.data.hotels
+    ) {
+      itemCount = hotelListingsData.data.paging.total_records;
+      return (
+        <div className="col-xl-9 col-lg-9">
+          {hotelListingsData.data.hotels.map(hotel => (
+            <HotelListing
+              hotel={hotel}
+              key={hotel.id}
+              currency_symbol={hotelListingsData.data.currency.symbol_native}
+            />
+          ))}
+          <div className="d-flex justify-content-center align-items-center mt-5">
+            <Pagination
+              currentPage={this.state.currentPage}
+              pageSize={config.hotel.page_size}
+              onPageChange={this.handlePageChange}
+              itemsCount={itemCount}
+            />
+          </div>
+        </div>
+      );
+    }
   };
 
   handleDateChange = (value, formikProps, field) => {
@@ -193,14 +307,17 @@ class HotelSearch extends Component {
     }
   };
 
-  handleSubmit = (values, formikProps) => {
-    debugger;
+  handleEdit = () => {
     const { isWidgetDisabled } = this.state;
     isWidgetDisabled && this.setState({ isWidgetDisabled: false });
-    if (!isWidgetDisabled) {
-      debugger;
-      this.props.setHotelWidgetAtSearch(values);
-    }
+  };
+
+  handleSubmit = async values => {
+    const { currentPage } = this.state;
+    this.props.setHotelWidgetAtSearch(values);
+
+    const qsParams = this.buildQueryStringParams(values, currentPage);
+    await this.props.getHotelListings(qsParams);
   };
 
   handleChangeForAdultsAndChildren = (
@@ -210,26 +327,37 @@ class HotelSearch extends Component {
   ) => {
     formikProps.setFieldValue(fieldName, selectedOption.value);
   };
+
+  handlePageChange = async page => {
+    this.setState({ currentPage: page });
+    const { hotelWidget } = this.props,
+      qsParams = this.buildQueryStringParams(hotelWidget, page);
+
+    await this.props.getHotelListings(qsParams);
+  };
 }
 
 const mapStateToProps = state => {
-  const { loading, error, hotelWidget } = state.hotelReducer;
+  const { loading, error, hotelWidget, hotelListingsData } = state.hotelReducer;
 
   return {
     loading,
     error,
-    hotelWidget
+    hotelWidget,
+    hotelListingsData
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     setHotelWidgetAtSearch: filterObject =>
-      dispatch(hotelAction.setHotelWidgetAtSearch(filterObject))
+      dispatch(hotelAction.setHotelWidgetAtSearch(filterObject)),
+    getHotelListings: qsParams =>
+      dispatch(hotelAction.getHotelListings(qsParams))
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(HotelSearch);
+)(HotelSearchWrapper);

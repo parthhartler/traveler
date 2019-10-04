@@ -155,9 +155,8 @@ header .bottomMenus li{
 	color: #fff;
 	background: url("../assets/images/banner.jpg");
 	background-size: cover;
-    overflow: hidden;
+	overflow: hidden;
 }
-
 .bannerSlideShow .slide i {
 	vertical-align: middle;
 }
@@ -263,9 +262,16 @@ header .bottomMenus li{
 .dropdown-menu.show {
 	width: 100%;
 }
+
+.dropdown .viewProfile{
+    width: 240px;
+    left:-80px !important;
+}
+
 .dateWrapper {
 	border-bottom: 1px solid #333;
 }
+
 .dateWrapper .form-control {
 	display: inline-block;
 	width: 45%;
@@ -1065,15 +1071,36 @@ a.map-view {
     background: #1b3563;
 }
 .sort-title {
-	font-size: 18px;
+	font-size: 16px;
     margin-bottom: 10px;
 }
 .price-title {
-	color: #ADB2BD;
-    margin-bottom: 7px;
+	color: #000;
+    margin-bottom: 2px;
     display: block;
-    margin-top: 10px;
+    margin-top: 13px;
     font-size: 14px;
+    font-weight: 500;		
+}
+.flight-sort-dropdown .container-radio,
+.seacrh-hotel-section .dropdown-menu-right .container-radio{
+	padding-left: 21px;
+    margin-bottom: 7px;
+    line-height: 20px;
+}
+.flight-sort-dropdown .radiomark,
+.seacrh-hotel-section .dropdown-menu-right .radiomark {
+    top: 3px;
+    left: 0;
+    height: 15px;
+    width: 15px;
+}
+.flight-sort-dropdown .container-radio .radiomark:after,
+.seacrh-hotel-section .dropdown-menu-right .radiomark:after {
+    top: 3px;
+    left: 3px;
+    width: 7px;
+    height: 7px;
 }
 .service-tag {
 	position: absolute;
@@ -1353,6 +1380,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle.noUi-handle-lower {
 .sub-heading {
     color: #5E6D77;
     font-size: 14px;
+    margin-bottom: 5px;
 }
 .head {
 	position: relative;
@@ -1750,7 +1778,7 @@ body .st-tabs .tab-pane {
     font-weight: 400;
     float: right;
     width: 65%;
-    font-size: 18px;
+    font-size: 16px;
 }
 .st-checkout-page .cart-info .info-section ul li.ad-info {
     margin-top: 10px;
@@ -1898,7 +1926,7 @@ body .st-tabs .tab-pane {
 }
 .expiry .form-control {
 	display: inline-block;
-	width: 46%;
+	width: 49%;
 }
 .expiry label {
 	display: block;
@@ -2148,7 +2176,7 @@ body .st-tabs .tab-pane {
 	width: 100%;
 	text-align: center;
 }
-.price-section .payment-amount .label, .price-section .payment-amount .value{
+.price-section .payment-amount .value{
 	font-size: 16px;
 }
 .reviewWrapper {
@@ -2173,6 +2201,7 @@ body .st-tabs .tab-pane {
 .price-section .value{
 	font-size: 16px;
 	text-align: right;
+	font-weight: bold;
 }
 .flightTop {
 	padding: 10px 0;
@@ -2688,14 +2717,17 @@ input.typeahead-input {
 }
 .st-blog aside .sidebar-widget.widget_st_list_entries ul li .thumb img {
     border-radius: 3px;
-    margin-right: 15px;
     height: 100px;
     width: 100px;
-    min-width: unset;
+    max-width: unset;
     transform: none;
+}
+.st-blog aside .sidebar-widget.widget_st_list_entries ul li .content {
+	margin-left: 15px;
 }
 .st-blog aside .sidebar-widget.widget_st_list_entries ul li .content .cate {
     text-transform: uppercase;
+    line-height: 18px;
 }
 .st-blog aside .sidebar-widget.widget_st_list_entries ul li .content .thumb-list-item-title {
     font-weight: 500;
@@ -2704,6 +2736,7 @@ input.typeahead-input {
     color: #1A2B48;
     line-height: 24px;
     font-size: 14px;
+    line-height: 18px;
 }
 .st-blog aside .sidebar-widget.widget_st_list_entries ul li .content .cate a {
     font-size: 12px;
@@ -2781,6 +2814,7 @@ input.typeahead-input {
     margin-bottom: 10px;
     text-transform: uppercase;
     font-weight: 500;
+    display: inline-block;
 }
 .blog-content .tags .tag-item:hover {
 	text-decoration: none;
@@ -2916,6 +2950,8 @@ input.typeahead-input {
     font-size: 14px;
     color: #5E6D77;
     margin-top: 10px;
+    line-height: 20px;
+    margin-bottom: 5px;
 }
 #respond .form-control {
     height: 40px;
@@ -3514,7 +3550,8 @@ h4.policy-title:after {
 .typeahead__container .typeahead__query input,
 .typeahead__container .typeahead__query input.typeahead-input {
 	padding-left: 30px !important;
-	border: 1px solid #E1E1E1;	
+	border: 1px solid #E1E1E1;
+	line-height: 1;
 }
 .advanceSearch {
 	color: #6ec0e5;
@@ -3547,6 +3584,7 @@ h4.policy-title:after {
 	color: #6ec0e5;
     font-size: 15px;
     font-weight: 500;
+    margin-bottom: 5px;
 }
 .font-normal {
 	font-weight: normal;
@@ -3785,7 +3823,7 @@ body .ag-theme-balham {
 body .ag-theme-balham .ag-header {
     background-color: #efefef;
     color: #012e6d;
-    font-weight: normal;
+    font-weight: 500;
 }
 
 body .ag-theme-balham .ag-paging-panel {
@@ -3969,15 +4007,6 @@ h4.filter-label.my-card-label:after {
 .powerText ~ img {
 	float: right;
 } 
-.typeahead__container .icon-font,
-.typeahead__container .icon-font {
-	top: 7px;
-}
-input.typeahead-input,
-input.js-typeahead-country_v1 {
-	font-size: 17px;
-    padding-top: 2px;
-}
 .reservation-status {
 	padding: 75px 0;
 }
@@ -4005,10 +4034,6 @@ input.js-typeahead-country_v1 {
 	color: #909090;	
 	font-size: 16px;
     line-height: 19px;	
-}
-.seacrh-hotel-section .thumb img {
-	height: 250px;
-	width: 270px;
 }
 .bookingTabs .nav-tabs .nav-link i {
 	margin-right: 2px;
@@ -4180,7 +4205,7 @@ input.js-typeahead-country_v1 {
 	background-image: none;
 	background-color: #002e6d;
 	color: #fff;
-	padding: 50px 0;
+	padding: 25px 0;
 }
 h2.modify-search-label {
 	font-size: 1rem;
@@ -4192,10 +4217,12 @@ h2.modify-search-label {
 .search-widget-wrapper .typeahead__container .typeahead__query input.typeahead-input,
 .modify-search-xs .typeahead__container .typeahead__query input.typeahead-input{
 	border-radius: 3px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 300;
     padding: 6px 12px !important;
     opacity: 1;
+    min-height: 30px;
+    line-height: 16px;
 }
 .search-widget-wrapper .typeahead-input.form-control:disabled,
 .search-widget-wrapper .form-control:disabled,
@@ -4213,10 +4240,11 @@ h2.modify-search-label {
 .modify-search-xs .custom-select {
 	background-color: #fff;
 	font-size: 13px;
-	height: 35px;
+	height: 30px;
+	line-height: 16px;
 }
 .search-widget-wrapper .btn-edit {
-	padding: 5px 20px 
+	padding: 2px 20px 
 }
 .custom-row {
 	margin-left: -4px;
@@ -4239,6 +4267,7 @@ h2.modify-search-label {
 	box-shadow: 0 4px 10px #ccc;
     position: relative;
     z-index: 1;
+    background: #fff;
 }
 .search-widget-xs .widget-search-results{
 	font-size: 14px;
@@ -4287,4 +4316,52 @@ h2.modify-search-label {
     padding: 5px 25px;
     border-radius: 100px;
     margin-left: 5px;
+}
+.modify-search-xs .form-control:disabled,
+.modify-search-xs .custom-select:disabled,
+.modify-search-xs .typeahead__container input[disabled] {
+    background-color: #e9ecef;
+    opacity: 1;
+}
+.hotel-detail .progress::after {
+	border-color: transparent;
+}
+.search-widget-wrapper label {
+	margin-bottom: 0;
+	font-size: 13px;
+}
+.seacrh-hotel-section .hotel-list-img{
+	height: 250px;
+}
+.placeholder-img {
+	background-image: url('../assets/images/placeholder-image.png');
+	height: 250px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 100%;
+}
+.wp-post-image {
+	width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 100%;
+}
+.facilityTab .item {
+    margin-bottom: 7px;
+}
+
+.form-group .invalid-feedback{
+  display: block;
+}
+
+.datePickerInvalid .SingleDatePicker,
+.form-group .is-invalid {
+  border: 1px solid#e13e4c;
+  background-image: none;
+}
+
+.dropdown-menu.languageCurrency.show{
+    width:400px;
+    left:-35px !important;
 }
