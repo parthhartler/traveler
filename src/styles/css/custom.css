@@ -1296,7 +1296,7 @@ a.map-view {
     border-color: #1b3563;
 }
 
-.noUi-horizontal {
+/* .noUi-horizontal {
 	height: 6px !important;
 }
 .noUi-target {
@@ -1335,7 +1335,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle.noUi-handle-lower {
 }
 .noUi-handle:focus {
 	outline: none;
-}
+} */
 .irs {
     color: #fff;
     font-size: 14px;
