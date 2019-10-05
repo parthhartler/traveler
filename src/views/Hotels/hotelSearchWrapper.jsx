@@ -13,27 +13,28 @@ import auth from "../../api/authService";
 import config from "../../config/config.json";
 import Pagination from "../../components/pagination";
 import Loader from "../../components/Loader/Loader";
+import { NewToastAlert } from "../Common/utils";
 import $ from "jquery";
 import * as Yup from "yup";
+import moment from "moment";
 import "react-dropdown/style.css";
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import "react-bootstrap-typeahead/css/Typeahead-bs4.css";
 
-// const countArray = [
-//   { value: "0", label: "0" },
-//   { value: "1", label: "1" },
-//   { value: "2", label: "2" },
-//   { value: "3", label: "3" },
-//   { value: "4", label: "4" }
-// ];
 const countArray = [0, 1, 2, 3, 4];
 
 class HotelSearchWrapper extends Component {
   constructor(props) {
     super(props);
-
+    let filterObject = JSON.parse(localStorage.getItem("hotelWidget")),
+      check_in = moment(filterObject.check_in),
+      check_out = moment(filterObject.check_out);
     this.state = {
-      initVal: { ...this.props.hotelWidget },
+      initVal: {
+        ...filterObject,
+        check_in,
+        check_out
+      },
       acLoading: false,
       destinations: [],
       asyncLoading: false,
@@ -41,7 +42,9 @@ class HotelSearchWrapper extends Component {
       isWidgetDisabled: true,
       currentPage: 1,
       starFilter: [false, false, false, false, false],
-      sortIcon: "fa fa-angle-down"
+      sortIcon: "fa fa-angle-down",
+      category_map: new Map(),
+      amenity_map: new Map()
     };
 
     this.validationRules = Yup.object().shape({
@@ -113,7 +116,7 @@ class HotelSearchWrapper extends Component {
       "paging[page_number]": page,
       "paging[per_page]": config.hotel.page_size
     };
-    debugger;
+
     if (this.state.hotel_name && this.state.hotel_name.id) {
       qsParams.filtersApplied = true;
       qsParams["filters[id]"] = this.state.hotel_name.id;
@@ -156,13 +159,26 @@ class HotelSearchWrapper extends Component {
       closeFilter.addEventListener("click", filterClose);
     })();
 
-    const { hotelWidget } = this.props,
-      qsParams = this.buildQueryStringParams(
-        hotelWidget,
+    let hotelWidget = JSON.parse(localStorage.getItem("hotelWidget"));
+    if (hotelWidget && hotelWidget.hasOwnProperty("rooms")) {
+      let check_in = moment(hotelWidget.check_in),
+        check_out = moment(hotelWidget.check_out),
+        filterObject = {
+          ...hotelWidget,
+          check_in,
+          check_out
+        };
+      this.props.setHotelWidgetAtSearch(filterObject);
+
+      const qsParams = this.buildQueryStringParams(
+        filterObject,
         this.state.currentPage
       );
 
-    await this.props.getHotelListings(qsParams);
+      await this.props.getHotelListings(qsParams);
+    } else {
+      window.location = "/homepage";
+    }
   }
 
   renderWidgetForm = () => {
@@ -172,7 +188,7 @@ class HotelSearchWrapper extends Component {
       <Formik
         enableReinitialize
         initialValues={initVal}
-        validationSchema={this.validationRules}
+        //validationSchema={this.validationRules}
         displayName="HotelWidgetBar"
         component={this.renderSearchWidgetBar}
         onSubmit={this.handleSubmit}
@@ -205,9 +221,18 @@ class HotelSearchWrapper extends Component {
                     isLoading={acLoading}
                     isRequired={true}
                     placeholder="Search"
-                    defaultInputValue={
-                      values.destination ? values.destination.label : ""
+                    defaultSelected={
+                      values.destination
+                        ? [
+                            {
+                              ...values.destination
+                            }
+                          ]
+                        : []
                     }
+                    // defaultInputValue={
+                    //   values.destination ? values.destination.label : ""
+                    // }
                   />
                 </div>
                 <div className="col-xl-3 col-sm-6 mb-sm-3 mb-xl-0">
@@ -308,7 +333,7 @@ class HotelSearchWrapper extends Component {
                     <button
                       type="button"
                       className="btn btn-primary text-uppercase btn-block btn-edit"
-                      onClick={this.handleEdit}
+                      onClick={e => this.handleEdit(e)}
                     >
                       {buttonText}
                     </button>
@@ -369,7 +394,7 @@ class HotelSearchWrapper extends Component {
               </div>
               <div className="col-12">
                 <div className="form-group">
-                  <label for="">Check In - Out</label>
+                  <label htmlFor="">Check In - Out</label>
                   <input
                     type="text"
                     className="form-control dateRangepicker"
@@ -379,7 +404,7 @@ class HotelSearchWrapper extends Component {
               </div>
               <div className="col-12">
                 <div className="form-group">
-                  <label for="">Adults</label>
+                  <label htmlFor="">Adults</label>
                   <select className="custom-select" disabled="">
                     <option value="">0</option>
                     <option value="">1</option>
@@ -391,7 +416,7 @@ class HotelSearchWrapper extends Component {
               </div>
               <div className="col-12">
                 <div className="form-group">
-                  <label for="">Children</label>
+                  <label htmlFor="">Children</label>
                   <select className="custom-select" disabled="">
                     <option value="">0</option>
                     <option value="">1</option>
@@ -457,6 +482,7 @@ class HotelSearchWrapper extends Component {
   };
 
   renderFilterSection = () => {
+    const { hotelListingsData } = this.props;
     return (
       <div className="col-md-3 col-xl-3 col-lg-3 mb-3 mb-sm-3 mb-md-0 filter-wrapper">
         <button
@@ -601,7 +627,7 @@ class HotelSearchWrapper extends Component {
                       <div
                         className="noUi-handle noUi-handle-lower"
                         data-handle="0"
-                        tabindex="0"
+                        tabIndex="0"
                         role="slider"
                         aria-orientation="horizontal"
                         aria-valuemin="10.0"
@@ -722,7 +748,7 @@ class HotelSearchWrapper extends Component {
             <div className="py-3 px-4 px-sm-3 px-md-3">
               <a
                 data-toggle="collapse"
-                href="#hotelStar"
+                href="#hotelCategories"
                 role="button"
                 aria-expanded="false"
                 aria-controls="collapseExample"
@@ -734,28 +760,24 @@ class HotelSearchWrapper extends Component {
                   aria-hidden="true"
                 ></i>
               </a>
-              <div className="collapse show st-icheck-item" id="hotelStar">
+              <div
+                className="collapse show st-icheck-item"
+                id="hotelCategories"
+              >
                 <div className="mt-3">
-                  <label className="customCheckbox">
-                    Hotel (111)
-                    <input type="checkbox" />
-                    <span className="checkmark"></span>
-                  </label>
-                  <label className="customCheckbox">
-                    Aparthotel (7)
-                    <input type="checkbox" />
-                    <span className="checkmark"></span>
-                  </label>
-                  <label className="customCheckbox">
-                    Resport (2)
-                    <input type="checkbox" />
-                    <span className="checkmark"></span>
-                  </label>
-                  <label className="customCheckbox">
-                    Apartment (1)
-                    <input type="checkbox" />
-                    <span className="checkmark"></span>
-                  </label>
+                  {this.filterRenderingHelper("category_ids").map(category => {
+                    return (
+                      <label className="customCheckbox" key={category.label}>
+                        {`${category.label} (${category.count})`}
+                        <input
+                          type="checkbox"
+                          name={category.value}
+                          onClick={e => this.handleCategoryCheck(e)}
+                        />
+                        <span className="checkmark"></span>
+                      </label>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -778,21 +800,19 @@ class HotelSearchWrapper extends Component {
               </a>
               <div className="collapse show" id="Facilities">
                 <div className="mt-3">
-                  <label className="customCheckbox">
-                    Air Conditioning
-                    <input type="checkbox" />
-                    <span className="checkmark"></span>
-                  </label>
-                  <label className="customCheckbox">
-                    Airport Transport
-                    <input type="checkbox" />
-                    <span className="checkmark"></span>
-                  </label>
-                  <label className="customCheckbox">
-                    Fitness Center
-                    <input type="checkbox" />
-                    <span className="checkmark"></span>
-                  </label>
+                  {this.filterRenderingHelper("amenities").map(amenity => {
+                    return (
+                      <label className="customCheckbox" key={amenity.label}>
+                        {amenity.label}
+                        <input
+                          type="checkbox"
+                          name={amenity.value}
+                          onClick={e => this.handleAmenityCheck(e)}
+                        />
+                        <span className="checkmark"></span>
+                      </label>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -800,6 +820,68 @@ class HotelSearchWrapper extends Component {
         </div>
       </div>
     );
+  };
+
+  handleAmenityCheck = async e => {
+    const { amenity_map } = this.state;
+
+    amenity_map.get(e.target.name)
+      ? amenity_map.delete(e.target.name)
+      : amenity_map.set(e.target.name, e.target.value);
+
+    this.setState({ amenity_map });
+
+    const arrPost = [];
+    for (let obj of amenity_map.keys()) {
+      arrPost.push(obj);
+    }
+    const qsParams = this.buildQueryStringParams(this.props.hotelWidget, 1);
+    if (arrPost.length) {
+      qsParams.amenitiesArray = arrPost;
+      qsParams.filters = true;
+    }
+
+    await this.props.getHotelListings(qsParams);
+  };
+
+  handleCategoryCheck = async e => {
+    const { category_map } = this.state;
+
+    category_map.get(e.target.name)
+      ? category_map.delete(e.target.name)
+      : category_map.set(e.target.name, e.target.value);
+
+    this.setState({ category_map });
+
+    const arrPost = [];
+    for (let obj of category_map.keys()) {
+      arrPost.push(obj);
+    }
+    const qsParams = this.buildQueryStringParams(this.props.hotelWidget, 1);
+    if (arrPost.length) {
+      qsParams.categoriesArray = arrPost;
+      qsParams.filters = true;
+    }
+
+    await this.props.getHotelListings(qsParams);
+  };
+
+  filterRenderingHelper = key => {
+    const { hotelListingsData } = this.props;
+    let filterArray = [];
+    if (
+      hotelListingsData &&
+      hotelListingsData.data &&
+      hotelListingsData.data.filters_available
+    ) {
+      filterArray = hotelListingsData.data.filters_available.filter(
+        item => item.name === key
+      );
+      if (filterArray && filterArray.length) {
+        return filterArray[0].options;
+      }
+    }
+    return [];
   };
 
   handleStarCheck = async e => {
@@ -819,7 +901,6 @@ class HotelSearchWrapper extends Component {
   };
 
   toggleSortClass = () => {
-    debugger;
     const { sortIcon } = this.state;
     this.setState({
       sortIcon:
@@ -925,28 +1006,42 @@ class HotelSearchWrapper extends Component {
   };
 
   acHandleChange = async (selected, formikProps) => {
+    debugger;
     if (selected.length) {
       this.setState({ destinations: [] });
       formikProps.setFieldValue("destination", selected[0]);
+    } else {
+      formikProps.setFieldValue("destination", null);
     }
   };
 
-  handleEdit = () => {
+  handleEdit = e => {
     const { isWidgetDisabled } = this.state;
     isWidgetDisabled && this.setState({ isWidgetDisabled: false });
+
+    e.preventDefault();
   };
 
   handleSubmit = async values => {
-    debugger;
-    const { currentPage } = this.state;
-    this.props.setHotelWidgetAtSearch(values);
+    let toastMessage = "";
+    if (!values.destination) {
+      toastMessage = "Please enter valid destination";
+    } else if (values.adults < 1) {
+      toastMessage = "Please add at least 1 adult.";
+    } else if (!values.check_in || !values.check_out) {
+      toastMessage = "Please enter valid dates.";
+    } else {
+      const { currentPage } = this.state;
+      this.props.setHotelWidgetAtSearch(values);
 
-    const qsParams = this.buildQueryStringParams(values, currentPage);
-    await this.props.getHotelListings(qsParams);
+      const qsParams = this.buildQueryStringParams(values, currentPage);
+      await this.props.getHotelListings(qsParams);
+    }
+    toastMessage &&
+      NewToastAlert("successAlert", "", toastMessage, null, null, true);
   };
 
   handleChangeForAdultsAndChildren = (e, fieldName, formikProps) => {
-    debugger;
     formikProps.setFieldValue(fieldName, e.target.value);
   };
 
@@ -970,22 +1065,19 @@ class HotelSearchWrapper extends Component {
     this.setState({
       asyncLoading: true
     });
-    const { hotelListingsData } = this.props;
-    debugger;
-    if (
-      hotelListingsData &&
-      hotelListingsData.data &&
-      hotelListingsData.data.hotels
-    ) {
-      const filterArray = hotelListingsData.data.hotels.filter(
-        hotel => hotel.name.toLowerCase().indexOf(query.toLowerCase()) > -1
+
+    const searchArray = this.filterRenderingHelper("id");
+
+    if (searchArray && searchArray.length) {
+      const filterArray = searchArray.filter(
+        hotel => hotel.label.toLowerCase().indexOf(query.toLowerCase()) > -1
       );
 
       this.setState({
         asyncLoading: false,
         hotelNames: filterArray.map(ele => ({
-          id: ele.id,
-          label: ele.name
+          id: ele.value,
+          label: ele.label
         }))
       });
     } else {

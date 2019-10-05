@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import _ from "lodash";
 import staticData from "../../config/static.service";
+import review from "../../styles/assets/images/review.png";
 
 class HotelListing extends Component {
   render() {
@@ -76,7 +77,7 @@ class HotelListing extends Component {
                   <i className="fa fa-map-marker mr-1" aria-hidden="true"></i>
                   {address}
                 </p>
-                <img src="images/review.png" />
+                <img src={review} alt="review" />
               </div>
             </div>
           </div>

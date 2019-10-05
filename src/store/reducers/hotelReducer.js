@@ -6,9 +6,10 @@ const initialState = {
   hotelWidget: {}
 };
 
-export default function auth(state = initialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case hotelConstants.HOTEL_SET_WIDGET_VALUES:
+      localStorage.setItem("hotelWidget", JSON.stringify({ ...action.data }));
       return {
         ...state,
         loading: true,

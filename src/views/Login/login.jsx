@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { authAction } from "../../store/actions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import auth from "../../api/authService";
 
 class Login extends Component {
   render() {
@@ -62,7 +63,7 @@ class Login extends Component {
 
     return (
       <Fragment>
-        {data.hasOwnProperty("data") && <Redirect to={`/homepage`} />}
+        {auth.getCurrentUser() && this.props.history.push("/homepage")}
         <div className="login-container h-100">
           <div className="login-wrapper h-100 position-relative">
             <div className="login-overlay"></div>
