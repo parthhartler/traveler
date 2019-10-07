@@ -2,13 +2,19 @@ import http from "./http";
 const querystring = require("querystring");
 
 export const hotelService = {
-  getHotelListings
+  getHotelListings,
+  getHotelDetails
 };
 
 function getHotelListings(data) {
   let filters = hotelListingHelper(data);
   const qs = querystring.stringify(data);
   return http.get("/api/searchHotels?" + qs + filters);
+}
+
+function getHotelDetails(data) {
+  const qs = querystring.stringify(data);
+  return http.get("/api/hotelDetails?" + qs);
 }
 
 function hotelListingHelper(data) {

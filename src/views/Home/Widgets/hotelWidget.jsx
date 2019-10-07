@@ -62,7 +62,7 @@ class HotelWidget extends Component {
     const { initVal, redirectToHotelSearch } = this.state;
     return (
       <Fragment>
-        {redirectToHotelSearch && <Redirect to="/hotelsearch" />}
+        {redirectToHotelSearch && <Redirect to="/hotel/search" />}
         <Formik
           enableReinitialize
           initialValues={initVal}

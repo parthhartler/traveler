@@ -3,7 +3,9 @@ import { hotelConstants } from "../constants";
 const initialState = {
   loading: false,
   error: null,
-  hotelWidget: {}
+  hotelWidget: {},
+  hotelListingsData: {},
+  hotelDetailsData: {}
 };
 
 export default function(state = initialState, action) {
@@ -28,6 +30,24 @@ export default function(state = initialState, action) {
         hotelListingsData: { ...action.data }
       };
     case hotelConstants.HOTEL_GET_LISTINGS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.error
+      };
+    case hotelConstants.HOTEL_GET_DETAILS:
+      return {
+        ...state,
+        loading: true,
+        error: null
+      };
+    case hotelConstants.HOTEL_GET_DETAILS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        hotelDetailsData: { ...action.data }
+      };
+    case hotelConstants.HOTEL_GET_DETAILS_FAILURE:
       return {
         ...state,
         loading: false,

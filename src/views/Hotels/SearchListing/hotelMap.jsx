@@ -3,7 +3,7 @@ import { Modal } from "react-bootstrap";
 import ReactMapboxGl from "react-mapbox-gl";
 import { ReactMapboxGlCluster } from "react-mapbox-gl-cluster";
 
-import { geodata } from "../../config/data";
+import { geodata } from "../../../config/data";
 
 const style = {
   display: "block",

@@ -1,31 +1,28 @@
 import React, { Component, Fragment } from "react";
 import { Formik } from "formik";
-import Dropdown from "react-dropdown";
 import { connect } from "react-redux";
 import { AsyncTypeahead } from "react-bootstrap-typeahead";
-import { AutoComplete } from "../../components/Forms/AutoComplete";
-import { DateRangeInput } from "../../components/Forms/DateRangeInput";
-import commonService from "../../api/commonService";
-import Header from "../Header/header";
-import { hotelAction } from "../../store/actions";
-import HotelListing from "./hotelListing";
-import auth from "../../api/authService";
-import config from "../../config/config.json";
-import Pagination from "../../components/pagination";
-import Loader from "../../components/Loader/Loader";
-import { NewToastAlert } from "../Common/utils";
-import $ from "jquery";
 import * as Yup from "yup";
 import moment from "moment";
 import _ from "lodash";
 import Chip from "@material-ui/core/Chip";
 import Nouislider from "nouislider-react";
+import { AutoComplete } from "../../../components/Forms/AutoComplete";
+import { DateRangeInput } from "../../../components/Forms/DateRangeInput";
+import commonService from "../../../api/commonService";
+import Header from "../../Header/header";
+import { hotelAction } from "../../../store/actions";
+import HotelListing from "./hotelListing";
+import auth from "../../../api/authService";
+import config from "../../../config/config.json";
+import Pagination from "../../../components/pagination";
+import { NewToastAlert } from "../../Common/utils";
 import HotelMap from "./hotelMap";
+import no_results from "../../../styles/assets/images/no_results.png";
 import "nouislider/distribute/nouislider.css";
 import "react-dropdown/style.css";
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import "react-bootstrap-typeahead/css/Typeahead-bs4.css";
-import no_results from "../../styles/assets/images/no_results.png";
 
 const makeCountArray = () => {
   let arr = [];
@@ -92,10 +89,9 @@ class HotelSearchWrapper extends Component {
   }
 
   render() {
-    const { loading, hotelListingsData, hotelWidget } = this.props;
+    const { hotelListingsData, hotelWidget } = this.props;
     return (
       <Fragment>
-        {loading && <Loader isLoading={loading} />}
         {this.state.showMap && (
           <HotelMap
             handleClose={this.hideMapModal}
@@ -256,13 +252,11 @@ class HotelSearchWrapper extends Component {
 
     let hotelWidget = JSON.parse(localStorage.getItem("hotelWidget"));
     if (hotelWidget && hotelWidget.hasOwnProperty("rooms")) {
-      let check_in = moment(hotelWidget.check_in),
-        check_out = moment(hotelWidget.check_out),
-        filterObject = {
-          ...hotelWidget,
-          check_in,
-          check_out
-        };
+      let filterObject = {
+        ...hotelWidget,
+        check_in: moment(hotelWidget.check_in),
+        check_out: moment(hotelWidget.check_out)
+      };
       this.props.setHotelWidgetAtSearch(filterObject);
 
       const qsParams = this.buildQueryStringParams(

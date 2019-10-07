@@ -3,7 +3,8 @@ import { hotelService } from "../../api/hotelService";
 
 export const hotelAction = {
   setHotelWidgetAtSearch,
-  getHotelListings
+  getHotelListings,
+  getHotelDetails
 };
 
 function setHotelWidgetAtSearch(data) {
@@ -23,6 +24,21 @@ function getHotelListings(data) {
       })
       .catch(error => {
         dispatch(failure(hotelConstants.HOTEL_GET_LISTINGS_FAILURE, error));
+      });
+  };
+}
+
+function getHotelDetails(data) {
+  return dispatch => {
+    dispatch(request(hotelConstants.HOTEL_GET_DETAILS));
+
+    return hotelService
+      .getHotelDetails(data)
+      .then(res => {
+        dispatch(success(hotelConstants.HOTEL_GET_DETAILS_SUCCESS, res));
+      })
+      .catch(error => {
+        dispatch(failure(hotelConstants.HOTEL_GET_DETAILS_FAILURE, error));
       });
   };
 }

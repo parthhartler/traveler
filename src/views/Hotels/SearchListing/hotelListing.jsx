@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import staticData from "../../config/static.service";
-import review from "../../styles/assets/images/review.png";
+import staticData from "../../../config/static.service";
+import review from "../../../styles/assets/images/review.png";
+import { NavLink } from "react-router-dom";
 
 class HotelListing extends Component {
   render() {
@@ -55,14 +56,6 @@ class HotelListing extends Component {
                   }
                   return null;
                 })}
-                {/* <li>Air Conditioning</li>
-                <li>Airport Transport</li>
-                <li>Fitness Center</li>
-                <li>Flat Tv</li>
-                <li>Heater</li>
-                <li>Internet – Wifi</li>
-                <li>Parking</li>
-                <li>Pool</li> */}
               </ul>
               <div className="d-flex align-items-start flex-xl-row  flex-column  flex-sm-column justify-content-between justify-content-sm-end  reviewWrapper align-items-sm-start align-items-xl-center justify-content-xl-between">
                 <p className="service-location mb-0 pr-0">
@@ -102,12 +95,12 @@ class HotelListing extends Component {
               </ul>
             </div>
             <div className="service-price">
-              <a
-                href="hotel-details.html"
+              <NavLink
+                to={`/hotel/details/${hotel.id}`}
                 className="btn btn-outline-secondary"
               >
                 Select Room
-              </a>
+              </NavLink>
             </div>
           </div>
         </div>
