@@ -61,6 +61,28 @@ export default function auth(state = initialState, action) {
         error: action.error
       };
 
+    // Authenticate user
+    case authConstants.AUTHENTICATE_USER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null
+      };
+
+    case authConstants.AUTHENTICATE_USER_REQUEST_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        user: action.data
+      };
+
+    case authConstants.AUTHENTICATE_USER_REQUEST_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.error
+      };
+
     default:
       // ALWAYS have a default case in a reducer
       return state;

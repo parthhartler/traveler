@@ -13,6 +13,12 @@ function logout() {
   return http.post("/api/v1/logout", { use_users_base_url: true });
 }
 
+function authenticate() {
+  return http.get("/api/v1/authenticate", {
+    params: { use_users_base_url: true }
+  });
+}
+
 function resetTokenLogout() {
   localStorage.removeItem(tokenKey);
 }
@@ -42,5 +48,6 @@ export default {
   getCurrentUser,
   getUser,
   resetTokenLogout,
-  setLoginToken
+  setLoginToken,
+  authenticate
 };

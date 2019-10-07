@@ -43,15 +43,18 @@ class HotelWidget extends Component {
       rooms: Yup.number()
         .required("This field is required.")
         .typeError(digitAllowed)
-        .min(1, "Please select at least 1 room."),
+        .min(1, "Select at least 1 room.")
+        .max(6, "Maximum 6 rooms allowed."),
       adults: Yup.number()
         .required("This field is required.")
         .typeError(digitAllowed)
-        .min(1, "Please add at least 1 adult."),
+        .min(1, "Add at least 1 adult.")
+        .max(16, "Maximum 16 adults allowed."),
       children: Yup.number()
         .required("This field is required.")
         .typeError(digitAllowed)
         .min(0)
+        .max(6, "Maximum 6 children allowed.")
     });
   }
 
@@ -84,6 +87,15 @@ class HotelWidget extends Component {
             "successAlert",
             "",
             "Maximum 4 guests allowed per room.",
+            null,
+            null,
+            true
+          );
+        } else if (rooms > adults) {
+          NewToastAlert(
+            "successAlert",
+            "",
+            "Room count cannot exceed the adults count.",
             null,
             null,
             true

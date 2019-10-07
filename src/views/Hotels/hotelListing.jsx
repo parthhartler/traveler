@@ -22,12 +22,8 @@ class HotelListing extends Component {
         <div className="row">
           <div className="col-xl-4 col-sm-3">
             <div className="thumb position-relative">
-              <a href="#" onClick={e => e.preventDefault()} className="login">
-                <div className="service-add-wishlist" title="Add to wishlist">
-                  <i className="fa fa-heart"></i>
-                </div>
-              </a>
-              <a href="#" onClick={e => e.preventDefault()}>
+              <a onClick={e => e.preventDefault()} className="login"></a>
+              <a onClick={e => e.preventDefault()}>
                 <div className="hotel-list-img placeholder-img">
                   <div className="wp-post-image loaded" style={style}></div>
                 </div>
@@ -40,11 +36,7 @@ class HotelListing extends Component {
                 return <i key={id} className="fa fa-star fa-rating"></i>;
               })}
               <h3 className="service-title">
-                <a
-                  href="#"
-                  onClick={e => e.preventDefault()}
-                  className="text-dark"
-                >
+                <a onClick={e => e.preventDefault()} className="text-dark">
                   {hotel.name}
                 </a>
               </h3>

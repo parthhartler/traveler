@@ -3,7 +3,8 @@ import { authConstants } from "../constants";
 
 export const authAction = {
   login,
-  logout
+  logout,
+  authenticate
 };
 
 function login(user) {
@@ -34,6 +35,23 @@ function logout() {
       })
       .catch(error => {
         dispatch(failure(authConstants.LOGOUT_USER_FAILURE, error));
+      });
+  };
+}
+
+function authenticate() {
+  return dispatch => {
+    dispatch(request(authConstants.AUTHENTICATE_USER_REQUEST));
+
+    return auth
+      .authenticate()
+      .then(res => {
+        dispatch(success(authConstants.AUTHENTICATE_USER_REQUEST_SUCCESS, res));
+      })
+      .catch(error => {
+        dispatch(
+          failure(authConstants.AUTHENTICATE_USER_REQUEST_FAILURE, error)
+        );
       });
   };
 }

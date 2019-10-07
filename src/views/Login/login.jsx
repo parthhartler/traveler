@@ -5,7 +5,7 @@ import logo from "../../styles/assets/images/logo.png";
 import * as Yup from "yup";
 import { authAction } from "../../store/actions";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 import auth from "../../api/authService";
 
 class Login extends Component {
@@ -13,7 +13,7 @@ class Login extends Component {
     const { loading, error } = this.props;
     return (
       <Fragment>
-        {/* <Loader isLoading={loading} /> */}
+        {loading && <Loader isLoading={loading} />}
         <Formik
           enableReinitialize
           initialValues={{
@@ -38,8 +38,12 @@ class Login extends Component {
   //   }
 
   handleSubmit = async (values, formikProps) => {
+    const credentialsObj = {
+      email: values.email.trim(),
+      password: values.password.trim()
+    };
     const credentials = {
-      ...values,
+      ...credentialsObj,
       tenant_id: "438cb20d-9b7c-4cf6-9d03-35686c03b924"
     };
     this.props.login(credentials);
@@ -54,7 +58,6 @@ class Login extends Component {
 
   loginForm = (formikProps, error) => {
     const { values, handleChange, handleBlur, handleSubmit } = formikProps;
-    const { data } = this.props;
     let errorMessage = "Invalid Username / Password";
 
     if (error && error.response === undefined) {

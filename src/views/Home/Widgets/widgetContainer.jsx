@@ -32,7 +32,7 @@ class WidgetContainer extends Component {
               <div className="tabsWrapper homeTabs col-lg-6 col-md-8">
                 <div className="nav-tabs">
                   <a
-                    href="javascript:void(0)"
+                    //href="javascript:void(0)"
                     className="left-btn text-white d-md-none d-block"
                   >
                     <i className="fa fa-angle-left" aria-hidden="true"></i>
@@ -57,7 +57,7 @@ class WidgetContainer extends Component {
                     </Nav>
                   </div>
                   <a
-                    href="javascript:void(0)"
+                    //href="javascript:void(0)"
                     className="right-btn text-white d-md-none d-block"
                   >
                     <i className="fa fa-angle-right" aria-hidden="true"></i>

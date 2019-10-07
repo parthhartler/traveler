@@ -93,6 +93,11 @@ body .DateInput.DateInput__disabled,
 body .DateInput {
   width: 100%;
 }
+.sortMenu {
+  left: 0;
+  transform: translateX(-77%);
+  width: 211px;
+}
 /*  */
 .noUi-base {
   position: relative;

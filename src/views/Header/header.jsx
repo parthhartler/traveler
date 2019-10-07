@@ -17,7 +17,7 @@ class Header extends Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     $("body").on("click", ".languageCurrency", function(e) {
       $(this)
         .parent()
@@ -34,12 +34,13 @@ class Header extends Component {
 
     const language = staticData.language(),
       currency = staticData.currency();
-
     this.setState({ language, currency });
+
+    await this.props.authenticate();
   }
 
   render() {
-    const { whiteBackground } = this.props,
+    const { whiteBackground, user } = this.props,
       { language, currency } = this.state,
       headerClass = whiteBackground ? "bgWhite" : "";
     return (
@@ -185,7 +186,8 @@ class Header extends Component {
                         aria-expanded="false"
                         data-toggle="dropdown"
                       >
-                        <i className="material-icons">person</i>Hi, Micheal
+                        <i className="material-icons">person</i>Hi,{" "}
+                        {user.data ? user.data.first_name : ""}
                       </button>
                       <div className="bg-white logOut p-2 dropdown-menu viewProfile">
                         <div className="d-flex mb-3">
@@ -193,7 +195,9 @@ class Header extends Component {
                             <span>M</span>
                           </p>
                           <div className="mb-0 ml-4 align-self-center">
-                            <p className="userName">Micheal Culhane</p>
+                            <p className="userName">{`${
+                              user.data ? user.data.first_name : ""
+                            } ${user.data ? user.data.last_name : ""}`}</p>
                             <a
                               //href="profile.html"
                               className="text-primary p-0 text-capitalize"
@@ -280,16 +284,18 @@ class Header extends Component {
 }
 
 const mapStateToProps = state => {
-  const { data, loading, error } = state.authReducer;
+  const { user, loading, error } = state.authReducer;
   return {
     loading,
-    error
+    error,
+    user
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: () => dispatch(authAction.logout())
+    logout: () => dispatch(authAction.logout()),
+    authenticate: () => dispatch(authAction.authenticate())
   };
 };
 

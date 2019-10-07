@@ -8288,4 +8288,3 @@ this.amenities = function() {
     // 	langCode: 'zh-CN'
     // }];
   };
-
