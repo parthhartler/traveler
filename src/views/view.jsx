@@ -4,8 +4,8 @@ import { Route, Switch } from "react-router-dom";
 import ProtectedRoutes from "../components/protectedRoutes";
 import Login from "./Login/login";
 import HomePage from "./Home/homePage";
-import "react-toastify/dist/ReactToastify.css";
 import HotelIndex from "./Hotels/hotelIndex";
+import "react-toastify/dist/ReactToastify.css";
 
 class View extends Component {
   render() {

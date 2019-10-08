@@ -49,6 +49,7 @@ function authenticate() {
         dispatch(success(authConstants.AUTHENTICATE_USER_REQUEST_SUCCESS, res));
       })
       .catch(error => {
+        if (error && error.response.status === 401) auth.resetTokenLogout();
         dispatch(
           failure(authConstants.AUTHENTICATE_USER_REQUEST_FAILURE, error)
         );

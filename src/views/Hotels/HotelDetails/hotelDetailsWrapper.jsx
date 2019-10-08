@@ -2,14 +2,16 @@ import React, { Component, Fragment } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import moment from "moment";
+import ImageGallery from "react-image-gallery";
 import Header from "../../Header/header";
 import auth from "../../../api/authService";
 import { hotelAction } from "../../../store/actions";
+import "react-image-gallery/styles/css/image-gallery.css";
 
 class HotelDetailsWrapper extends Component {
   constructor(props) {
     super(props);
-    this.state = { hotelId: "" };
+    this.state = { hotelId: "", hotelData: null };
   }
 
   async componentDidMount() {
@@ -28,8 +30,15 @@ class HotelDetailsWrapper extends Component {
       let qs = this.buildQueryStringParams(filterObject);
       qs.hotel_id = hotelId;
 
-      this.setState({ hotelId });
       await getHotelDetails(qs);
+      const { hotelDetailsData } = this.props,
+        hotelData =
+          hotelDetailsData &&
+          hotelDetailsData.data &&
+          hotelDetailsData.data.hotels
+            ? hotelDetailsData.data.hotels
+            : null;
+      this.setState({ hotelId, hotelData });
     } else {
       window.location = "/homepage";
     }
@@ -73,19 +82,101 @@ class HotelDetailsWrapper extends Component {
         <div className="hotel-detail">
           <Header whiteBackground={true} />
           {this.renderBreadCrumbBar()}
+          <div className="st-content-wrapper">
+            <div className="container">
+              {this.renderHotelHeaderDetails()}
+              {this.renderImageGallery()}
+            </div>
+          </div>
         </div>
       </Fragment>
     );
   }
 
+  getAddressDetails = () => {
+    const { hotelData } = this.state;
+    return hotelData && hotelData[this.state.hotelId]
+      ? hotelData[this.state.hotelId].city +
+          ", " +
+          (hotelData[this.state.hotelId].state_province
+            ? hotelData[this.state.hotelId].state_province + ", "
+            : "") +
+          hotelData[this.state.hotelId].country_code
+      : "";
+  };
+
+  renderHotelHeaderDetails = () => {
+    const { hotelData, hotelId } = this.state;
+
+    return hotelId && hotelData && hotelData[hotelId] ? (
+      <div className="st-hotel-header d-flex justify-content-between flex-column flex-sm-row pt-3 mb-3 mb-sm-4">
+        <div className="left">
+          <i className="fa fa-star fa-rating"></i>
+          <i className="fa fa-star fa-rating"></i>
+          <i className="fa fa-star fa-rating"></i>
+          <i className="fa fa-star fa-rating"></i>
+          <i className="fa fa-star fa-rating"></i>
+          <h2 className="st-heading">{hotelData[hotelId].name}</h2>
+          <a
+            //href="javascript:void(0)"
+            data-toggle="modal"
+            data-target="#mapModal"
+            className="shortAddress"
+          >
+            <i className="fa fa-map-marker mr-1" aria-hidden="true"></i>{" "}
+            {this.getAddressDetails()}
+          </a>
+          {hotelData[hotelId].phone && (
+            <div className="sub-heading">
+              <span>
+                <i className="fa fa-phone mr-1" aria-hidden="true"></i>{" "}
+                {hotelData[hotelId].phone}
+              </span>
+            </div>
+          )}
+        </div>
+        <div className="right">
+          <div className="d-flex align-items-center justify-content-between head">
+            <div className="left">
+              <span className="head-rating">Very Good</span>
+              <span className="text-rating">from 2 reviews</span>
+            </div>
+            <div className="score">
+              {hotelData[hotelId].rating}
+              <span>/5</span>
+            </div>
+          </div>
+          <div className="foot">100% of guests recommend</div>
+        </div>
+      </div>
+    ) : (
+      <div />
+    );
+  };
+
+  renderImageGallery = () => {
+    const { hotelData, hotelId } = this.state;
+    let images = [];
+    if (hotelData && hotelId && hotelData[hotelId]) {
+      const { prefix, suffix } = hotelData[hotelId].image_details;
+      for (let i = 0; i < hotelData[hotelId].image_details.count; i++) {
+        images.push({
+          original: `${prefix}${i}${suffix}`
+        });
+      }
+    }
+
+    return (
+      <div className="row">
+        <div className="col-sm-12 col-md-9 col-xl-9 col-lg-9">
+          <ImageGallery items={images} />
+        </div>
+      </div>
+    );
+  };
+
   renderBreadCrumbBar = () => {
-    const { hotelDetailsData } = this.props,
-      hotelData =
-        hotelDetailsData &&
-        hotelDetailsData.data &&
-        hotelDetailsData.data.hotels
-          ? hotelDetailsData.data.hotels
-          : null;
+    const { hotelData } = this.state;
 
     //Moblie filters render
     return (
@@ -185,7 +276,9 @@ class HotelDetailsWrapper extends Component {
               <li>
                 <span>
                   {hotelData && hotelData[this.state.hotelId]
-                    ? `${hotelData[this.state.hotelId].name} ,${hotelData[this.state.hotelId].city}, ${hotelData[this.state.hotelId].country_code}`
+                    ? `${
+                        hotelData[this.state.hotelId].name
+                      }, ${this.getAddressDetails()}`
                     : ""}
                 </span>
               </li>

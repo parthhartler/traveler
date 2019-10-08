@@ -21,31 +21,53 @@ const mapProps = {
   style: "mapbox://styles/mapbox/streets-v8"
 };
 
+// const CustomSpiralComponent = ({ properties, ...restProps }) => {
+//   const onClick = e => {
+//     console.log(
+//       `Receive event onClick in spiral at properties: ${JSON.stringify(
+//         properties
+//       )}`
+//     );
+//   };
+//   return <div className="spiderifier-marker-content" onClick={onClick}></div>;
+// };
+
+// const CustomeMarkerComponent = ({ properties, className, cssObject }) => {
+//   const onClick = e => {
+//     console.log(
+//       `Receive event onClick in marker at properties: ${JSON.stringify(
+//         properties
+//       )}`
+//     );
+//   };
+//   return <div className={className} style={cssObject} onClick={onClick} />;
+// };
+
 class HotelMap extends Component {
   constructor(props) {
     super(props);
   }
 
-  getEventHandlers() {
-    return {
-      onClick: (properties, coords, offset) =>
-        console.log(
-          `Receive event onClick at properties: ${properties}, coords: ${coords}, offset: ${offset}`
-        ),
-      onMouseEnter: (properties, coords, offset) =>
-        console.log(
-          `Receive event onMouseEnter at properties: ${properties}, coords: ${coords}, offset: ${offset}`
-        ),
-      onMouseLeave: (properties, coords, offset) =>
-        console.log(
-          `Receive event onMouseLeave at properties: ${properties}, coords: ${coords}, offset: ${offset}`
-        ),
-      onClusterClick: (properties, coords, offset) =>
-        console.log(
-          `Receive event onClusterClick at properties: ${properties}, coords: ${coords}, offset: ${offset}`
-        )
-    };
-  }
+  // getEventHandlers() {
+  //   return {
+  //     onClick: (properties, coords, offset) =>
+  //       console.log(
+  //         `Receive event onClick at properties: ${properties}, coords: ${coords}, offset: ${offset}`
+  //       ),
+  //     onMouseEnter: (properties, coords, offset) =>
+  //       console.log(
+  //         `Receive event onMouseEnter at properties: ${properties}, coords: ${coords}, offset: ${offset}`
+  //       ),
+  //     onMouseLeave: (properties, coords, offset) =>
+  //       console.log(
+  //         `Receive event onMouseLeave at properties: ${properties}, coords: ${coords}, offset: ${offset}`
+  //       ),
+  //     onClusterClick: (properties, coords, offset) =>
+  //       console.log(
+  //         `Receive event onClusterClick at properties: ${properties}, coords: ${coords}, offset: ${offset}`
+  //       )
+  //   };
+  // }
 
   render() {
     const {
@@ -54,8 +76,10 @@ class HotelMap extends Component {
       hotelListingsData,
       hotelWidget
     } = this.props;
-    console.log("features", geodata.features);
-    return (
+    //debugger;
+    console.log("features", geodata);
+    const data1 = { ...geodata };
+    return geodata ? (
       <div
         className="modal fade show"
         tabIndex="-1"
@@ -85,15 +109,19 @@ class HotelMap extends Component {
             </h5>
           </Modal.Header>
           <Modal.Body>
-            {/* <Map {...mapProps} onStyleLoad={this.onStyleLoad}>
+            <Map {...mapProps} onStyleLoad={this.onStyleLoad}>
               <ReactMapboxGlCluster
                 data={geodata}
-                {...this.getEventHandlers()}
+                //{...this.getEventHandlers()}
+                // spiralComponent={CustomSpiralComponent}
+                // markerComponent={CustomeMarkerComponent}
               />
-            </Map> */}
+            </Map>
           </Modal.Body>
         </Modal>
       </div>
+    ) : (
+      <div />
     );
   }
 }
